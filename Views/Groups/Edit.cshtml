@@ -1,0 +1,241 @@
+﻿@model RashakaGroupsAdmin.Models.Group
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-12 col-md-12 col-lg-10 addGroup-wrapper">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-9">
+                <h1 class="addGroupHeader d-none d-md-none d-lg-block">تعديل مجموعة </h1>
+                <div class="groupCover">
+                    <img src="https://api.rashaqa.net/Images/groups/@Model.coverImage" id="imgCoverSourceImage">
+                    <label for="coverImg" class="d-inline-flex d-md-inline-flex d-lg-flex mr-auto">
+                        <input type="file" name="coverImage" id="coverImg" accept="image/jpeg ,image/png,image/bmp">
+                        <button class="changeCover" onclick="selectCoverImage(this,event)">تغيير الصورة <i></i></button>
+                    </label>
+
+                    <div class="groupDp">
+                        <img src="https://api.rashaqa.net/Images/groups/@Model.image" id="imgProfileSourceImage">
+                        <label for="dpImg" class="d-inline-flex d-md-inline-flex d-lg-flex mr-auto">
+                            <input type="file" name="image" id="dpImg" accept="image/jpeg ,image/png,image/bmp">
+                            <i class="changeDp" onclick="selectProfileImage(this,event)"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-11 addgroup-wrapper">
+                    <div class="form-group">
+                        <label for="groupName">اسم المجموعة</label>
+                        <input type="text" name="name" class="form-control" id="groupName" contenteditable="true" value="@Model.name" minlength="3" maxlength="20" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="groupDesc">وصف المجموعة</label>
+                        <textarea type="text" name="description" class="form-control" id="groupDesc" contenteditable="true" required>@Model.description</textarea>
+                    </div>
+                    <div class="form-group col-12 col-md-12 col-lg-8 groupType-wrapper">
+                        <label>نوع المجموعة</label>
+                        <div class="radio-wrapper">
+                            <div class="row">
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv @(Model.typeId==1?"active":"")">
+                                        <input type="radio" name="typeId" id="men" value="1" @(Model.typeId==1?"checked":"")>
+                                        <span class="checkmark"></span>
+                                        <label for="men">رجــال</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv @(Model.typeId==2?"active":"")">
+                                        <input type="radio" name="typeId" id="women" value="2" @(Model.typeId==2?"checked":"")>
+                                        <span class="checkmark"></span>
+                                        <label for="women">نساء</label>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv @(Model.typeId==3?"active":"")">
+                                        <input type="radio" name="typeId" id="all" value="3" @(Model.typeId==3?"checked":"")>
+                                        <span class="checkmark"></span>
+                                        <label for="all">عامة</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-md-12 col-lg-8 groupPrivacy-wrapper">
+                        <label>خصوصية المجموعة</label>
+                        <div class="radio-wrapper">
+                            <div class="row">
+                                <div class="col-6 col-md-6 col-lg-6 radioCard">
+                                    <div class="groupRadio @(Model.privacyId==1?"active":"")" >
+                                        <label for="public">
+                                            <input type="radio" name="privacyId" id="public" value="1" @(Model.privacyId==1?"checked":"")>
+                                            <span class="checkmark"></span>
+                                            مفتوحة
+                                        </label>
+
+                                        <p>يتم الأنضمام إليك بدون موافقة</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6 radioCard">
+                                    <div class="groupRadio @(Model.privacyId==2?"active":"")">
+                                        <label for="private">
+                                            <input type="radio" name="privacyId" id="private" value="2" @(Model.privacyId==2?"checked":"")>
+                                            <span class="checkmark"></span>
+                                            مغلقة
+                                        </label>
+                                        <p>  لا يمكن الأنضمام لها الا بموافقة المالك</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-md-12 col-lg-8 groupAdmin-wrapper">
+                        <input type="hidden" value="@Model.id" name="id" id="groupId" />
+                        <div class="row mx-0">
+                            <label for="groupAdmin">تعيين ادمن للمجموعة</label>
+                            <label class="switch">
+                                @*<input type="checkbox" checked id="groupAdmin">
+                                <span class="slider round" id="btnSlide"></span>*@
+                            </label>
+                        </div>
+                        @foreach (var item in ViewBag.admins as IEnumerable<RashakaGroupsAdmin.Models.Account>)
+                        {
+                            <div class="admin-wrapper">
+                                <input type="hidden" value="@item.id" name="adminId"/>
+                                <p>@item.name</p>
+                                <i class="removeAdmin" id="@item.id" onclick="removeAdmin(this)"></i>
+                            </div>
+                        }
+                        <a id="@Model.id" href="#" data-toggle="modal" data-target="#exampleModal" class="addAdminGroup"> اضف ادمن جديد <i></i></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-3 d-none d-md-none d-lg-block ads-wrapper">
+                <div class="col-12 col-md-12 col-lg-12 longAd ">
+                    <img src="~/content/frontend/imgs/longAd.png">
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 shortAd">
+                    <img src="~/content/frontend/imgs/shortAd.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="addGroup" onclick="return validate()">حفظ التعديل</button>
+    }
+
+<div class="modal fade bd-example-modal-lg chooseAdminPopUp" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="exampleModalLabel">ابحث في الأعضاء</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="search-wrapper">
+                        <i class="searchIcon" ></i>
+                        <input type="hidden" value="" id="adminGroupId" />
+                        <input id="searchMembers" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="SerachMemebers(this)">
+                        <i class="searchButton"></i>
+                    </div>
+                    <div class="membersAdmin-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="acceptAdmin"> موافق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        <script>
+            function selectCoverImage(item, e) {
+                e.preventDefault();
+                $("#coverImg").click();
+            }
+            function selectProfileImage(item, e) {
+                e.preventDefault();
+                $("#dpImg").click();
+            }
+            function validate() {
+                if ($("#groupName").val().trim().length == 0) {
+                    $("#groupName").css('border-color', 'red')
+                    return false;
+                } else {
+                    $("#groupName").css('border-color', '')
+                    return true;
+                }
+            }
+                //$('#groupName').keyup(function (e) {
+                //    if ($(this).val().trim().length == 0) {
+                //        $("addGroup").prop('disabled', true);
+                //       ;
+                //    } else {
+                //        $("addGroup").prop('disabled', false)
+                //    }
+                //});
+            $(".acceptAdmin").click(function () {
+                $('input[name="adminMember"]:checked').each(function () {
+                    var name = $(this).val();
+                    var id = $(this).attr('id');
+                    var div = '<div class="admin-wrapper"><input type="hidden" value="'+id+'" name="adminId"/>' +
+                        '<p>' + name + '</p><i id="' + id + '" class="removeAdmin"></i></div>';//"<a>" + "<i onclick=\"removeAdmin(this)\"></i>" + val + "</a>";
+                    div.appendAfter(document.getElementsByClassName('row mx-0'));
+                    //$(".groupAdmin-wrapper").prepend(div);
+                })
+                $('.chooseAdminPopUp').modal('hide');
+            });
+            
+            //$("#btnSlide").click(function () {
+            //    alert($("#groupAdmin").checked)
+            //   /* if (this.checked) { }*/
+            //});
+            @*if ('@Model.typeId'==1) {
+                $(".radio-wrapper input[type=radio]").parent().parent().removeClass("active");
+                $('#men').parent().addClass("active");
+            }
+             if ('@Model.typeId'==2) {
+                $(".radio-wrapper input[type=radio]").parent().parent().removeClass("active");
+                $('#women').parent().addClass("active");
+            }
+             if ('@Model.typeId'==3) {
+                $(".radio-wrapper input[type=radio]").parent().parent().removeClass("active");
+                $('#all').parent().addClass("active");
+            }*@
+
+            //var NewElement = document.createElement('div');
+            //NewElement.innerHTML = 'New Element';
+            //NewElement.id = 'NewElement';
+
+            ///*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
+            //NewElement.appendAfter(document.getElementById('Neighbor2'));
+
+        @*var firstItems = [];
+        $('.addAdmin').click(function () {
+            $.get('/GroupUsers/MembersJson?groupId=@Model.id', function (res) {
+                firstItems = res;
+                var rows = '';
+                $.each(res, function (i, item) {
+                    var html = '<div class="groupRadio">' +
+                        '<label for= "'+ item.id +'">' +
+                        '<input type="checkbox" name="adminMember" value="' + item.name + '" id="' + item.id+'">' +
+                        '<span class="checkmark" ></span >' + item.name+
+                        '</label>' +
+                        '</div>';
+                    rows += html;
+                });
+                $('.groupAdmin-wrapper').append(rows);
+            });
+        });*@
+        </script>
+    }

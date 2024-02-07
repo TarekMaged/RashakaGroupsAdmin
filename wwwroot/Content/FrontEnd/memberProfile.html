@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css?v=21">
+  <title>memberProfile</title>
+</head>
+<body>
+<div class="container-fluid">
+
+  <div class="col-12 col-md-12 col-lg-12 main-wrapper">
+    <div class="row">
+      <div class="col-10 col-md-10 col-lg-3 px-0 sideMenu-wrapper">
+        <div id="overlayBg"></div>
+        <div id="myNav" class="overlay">
+          <div class="overlay-content">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+            <div class="col-12col-md-12 col-lg-12 sideMenu">
+              <nav id="nav" class="navbar">
+                <div class="inner-menu">
+                  <div class="userImage">
+                    <img src="imgs/userDefault.png">
+                    <label for="userImg" class="d-flex d-md-flex d-lg-flex mr-auto">
+                      <input type="file" name="image" id="userImg" accept="image/jpeg ,image/png,image/bmp">
+                      <i class="edit" onclick="openFileUpload(this,event)"></i>
+                    </label>
+                  </div>
+                  <p class="userName">محمد أحمد</p>
+                  <p class="version"> <span class="star"></span> نسخه مدفوعة</p>
+                </div>
+
+                <div class="sideList">
+                  <ul>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="#"> <span class="home"></span> الرئيسية <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="groups"></span>    مجموعاتك
+                      </a>
+                      <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="" id="groupId">
+                          <img src="imgs/mask_group_2-2x.png" class="groupImg">مجموعة الجرى الحر</a>
+                        <a class="dropdown-item" href="/" id="groupId2">
+                          <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                          مشاة الرياض
+                        </a>
+                        <a class="dropdown-item active" href="/" id="groupId3">
+                          <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                          مجموعة رشاقة
+                        </a>
+                        <div class="activeGroup">
+                          <ul>
+                            <li>
+                              <a href="groupDetails.html" class="statistics"> <i></i>إحصائات</a>
+                            </li>
+                            <li class="active">
+                              <a href="members.html" class="members"><i></i>أعضاء</a>
+                            </li>
+                            <li>
+                              <a href="posts.html" class="groupPosts"><i></i>منشورات</a>
+                            </li>
+                            <li>
+                              <a href="#" class="interactions"><i></i> فاعليات</a>
+                            </li>
+                            <li>
+                              <a href="#" class="products"><i></i>المنتجات</a>
+                            </li>
+                            <li>
+                              <a href="membersReports.html" class="groupReports"><i></i> إبلاغات</a>
+                            </li>
+                            <li>
+                              <a href="groupSettings.html" class="settings"><i></i>إعدادت</a>
+                            </li>
+                          </ul>
+
+                        </div>
+
+                        <a class="dropdown-item" href="/">
+                          <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                          مشاة الرياض
+                        </a>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-9  px-0">
+        <div class="col-12 col-md-12 col-lg-12 px-0 navbarHeader">
+          <nav id="navbar" class="navbar navbar-expand-lg w-100 justify-content-center">
+            <span class="toggler-icon" onclick="openNav()"></span>
+            <div class="row w-100">
+              <div class="col-5 col-md-5 col-lg-5 d-none d-md-flex d-lg-flex align-items-center">
+                <div class="search-wrapper">
+                  <i class="searchIcon"></i>
+                  <input id="searchAuto" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                  <i id="clear" class="textClear" onclick="clearText()" style="display: none;"></i>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                <div class="row w-100 h-100">
+                  <div class="col-7 col-md-7 col-lg-7 d-none d-md-flex d-lg-flex  align-items-center headerLinks">
+                    <a class="addMember" href="addGroup.html">اضف مجموعة جديدة</a>
+
+                    <a class="addPost" href="#" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                  </div>
+
+                  <div class="col-12 col-md-12 col-lg-5 align-items-center d-flex respHeader">
+                    <a class="notificationBell"> <span>3</span></a>
+                    <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                    <a class="addMemberIcon" href="addGroup.html"></a>
+                    <a class="navbar-brand" href="/">
+                      <div class="logo"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="col-12 d-block d-md-block d-lg-none px-0">
+          <ul class="horizontalBar">
+            <li>الرئيسة</li>
+            <li>المجموعة</li>
+            <li class="active">المنشورات</li>
+            <li>الأعضاء</li>
+            <li>المنشورات</li>
+            <li>الرئيسة</li>
+            <li>المجموعة</li>
+            <li>المنشورات</li>
+            <li>الأعضاء</li>
+            <li>المنشورات</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-12 col-lg-11 memberProfile-wrapper">
+          <h2> مجموعة رشاقة <span>الأعضاء</span></h2>
+          <div class="col-12 col-md-12 col-lg-12 memberInfo">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-12 col-lg-auto">
+                <div class="row">
+                  <div class="col-auto memberDp">
+                    <img class="memberProfileImg" src="imgs/memberDp.png">
+                  </div>
+                  <div class="col memberData">
+                    <div class="d-flex">
+                      <p class="nameGender"> محمد احمد <span>__ ذكر</span></p>
+                      <div class="postOptions-wrapper">
+                      <a class="groupOptions d-block d-md-block d-lg-none"></a>
+                        <div class="optionPopup">
+                          <a href="#"> <i class="assignAdmin" ></i> تعيين كأدمن </a>
+                          <a href="#"> <i class="removeMemberResp"></i> مسح العضو </a>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mail">Mohamedah@hotmail.com</p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-auto justify-content-between align-items-center memberOptions d-none d-md-none d-lg-block">
+                <a href="#" class="assignAdmin"> <i></i>تعيين كأدمن </a>
+                <a href="#" class="deleteMember"> <i></i>حذف العضو </a>
+                <a href="#" class="deleteAdmin"> <i></i>إلغاء العضو كأدمن </a>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6 memberCounters">
+            <div class="row justify-content-between align-items-center">
+                <div class="counter">
+                  <p>عدد الخطوات</p>
+                  <span>56575</span>
+                </div>
+              <div class="counter">
+                <p>مسافة</p>
+                <span>56575</span>
+              </div>
+              <div class="counter">
+                <p>تاريخ الأنضمام</p>
+                <span class="joinDate">31/8/2022</span>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 memberPosts">
+            <h3>المنشورات</h3>
+            <div class="col-12 col-md-12 col-lg-12 membersPosts-inner px-0" id="grid">
+              <div class="post">
+                <div class="row align-items-start">
+                  <div class="col-12 col-md-12 col-lg-12">
+                    <div class="row">
+                      <div class="col userInfo">
+                          <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                          <p class="postDate"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>
+                         <p class="postText">إعلان نتائج السحب النهائي #مسابقة_تحدي_وامي تويتر: @ddbdoba43 الفائزون من #تطبيق_رشاقة 👇🏼 إبراهيم شماسنة nazar mhamed Kawther Saleh mego يوسف البرقاوي عبدالله الهزاع</p>
+
+                      </div>
+                      <div class="col-auto postImage">
+                        <img class="userPostImg" src="imgs/postImg.png">
+                      </div>
+                    </div>
+                    <div class="socialInfo">
+                      <p> 12 <i class="comments"></i></p>
+                      <p> 20 <i class="likes"></i></p>
+                      <p> 20 <i class="share"></i></p>
+                    </div>
+                  </div>
+
+
+                      </div>
+
+                    </div>
+              <div class="post">
+                <div class="row align-items-start">
+                  <div class="col-12 col-md-12 col-lg-12">
+                    <div class="row">
+                      <div class="col userInfo">
+                        <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                        <p class="postDate"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>
+                        <p class="postText">إعلان نتائج السحب النهائي #مسابقة_تحدي_وامي تويتر: @ddbdoba43 الفائزون من #تطبيق_رشاقة 👇🏼 إبراهيم شماسنة nazar mhamed Kawther Saleh mego يوسف البرقاوي عبدالله الهزاع</p>
+
+                      </div>
+                      <div class="col-auto postImage">
+                        <img class="userPostImg" src="imgs/postImg.png">
+                      </div>
+                    </div>
+                    <div class="socialInfo">
+                      <p> 12 <i class="comments"></i></p>
+                      <p> 20 <i class="likes"></i></p>
+                      <p> 20 <i class="share"></i></p>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="post">
+                <div class="row align-items-start">
+                  <div class="col-12 col-md-12 col-lg-12">
+                    <div class="row">
+                      <div class="col userInfo">
+                        <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                        <p class="postDate"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>
+                        <p class="postText">إعلان نتائج السحب النهائي #مسابقة_تحدي_وامي تويتر: @ddbdoba43 الفائزون من #تطبيق_رشاقة 👇🏼 إبراهيم شماسنة nazar mhamed Kawther Saleh mego يوسف البرقاوي عبدالله الهزاع</p>
+
+                      </div>
+                      <div class="col-auto postImage">
+                        <img class="userPostImg" src="imgs/postImg.png">
+                      </div>
+                    </div>
+                    <div class="socialInfo">
+                      <p> 12 <i class="comments"></i></p>
+                      <p> 20 <i class="likes"></i></p>
+                      <p> 20 <i class="share"></i></p>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="post">
+                <div class="row align-items-start">
+                  <div class="col-12 col-md-12 col-lg-12">
+                    <div class="row">
+                      <div class="col userInfo">
+                        <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                        <p class="postDate"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>
+                        <p class="postText">إعلان نتائج السحب النهائي #مسابقة_تحدي_وامي تويتر: @ddbdoba43 الفائزون من #تطبيق_رشاقة 👇🏼 إبراهيم شماسنة nazar mhamed Kawther Saleh mego يوسف البرقاوي عبدالله الهزاع</p>
+
+                      </div>
+                      <div class="col-auto postImage">
+                        <img class="userPostImg" src="imgs/postImg.png">
+                      </div>
+                    </div>
+                    <div class="socialInfo">
+                      <p> 12 <i class="comments"></i></p>
+                      <p> 20 <i class="likes"></i></p>
+                      <p> 20 <i class="share"></i></p>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <template id="memberPost">
+                <div class="post">
+                  <div class="row align-items-start">
+                    <div class="col-12 col-md-12 col-lg-12">
+                      <div class="row">
+                        <div class="col userInfo">
+                          <div class="userPosted skeleton skeleton-text"></div>
+                          <div class="postDate skeleton skeleton-text"></div>
+                          <div class="postText skeleton skeleton-text"></div>
+
+                        </div>
+                        <div class="col-auto postImage">
+                          <div class="userPostImg skeleton" src="imgs/postImg.png"></div>
+                        </div>
+                      </div>
+                      <div class="socialInfo skeleton skeleton-text"></div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </template>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js?v=3"></script>
+<script>
+  $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+  $("#groupId3").addClass("active"); /* add active to selected groupId only */
+
+  /* skeleton loading */
+  const grid = document.querySelector('#grid')
+  const cardTemplate = document.getElementById('memberPost')
+  for (let i = 0; i < 9; i++) {
+    grid.append(cardTemplate.content.cloneNode(true))
+  }
+  /*  grid.innerHTML = ''  //remove skeleton cards from html
+   // append cards containing real data
+   */
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿@*@model System.Web.Mvc.HandleErrorInfo*@
+
+@{
+    ViewBag.Title = "Error";
+}
+<style>
+    * {
+        transition: all 0.6s;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        color: #b40f0f;
+        margin: 0;
+    }
+
+    #main {
+        display: table;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .fof {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+        .fof h1 {
+            font-size: 50px;
+            display: inline-block;
+            padding-right: 12px;
+            animation: type .5s alternate infinite;
+        }
+
+    @@keyframes type {
+        from {
+            box-shadow: inset -3px 0px 0px #888;
+        }
+
+        to {
+            box-shadow: inset -3px 0px 0px transparent;
+        }
+    }
+</style>
+
+<div class="col-12 col-md-12 col-lg-11 postDetails-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="red" style="text-align:center;">
+                <li class="active">
+                    <h3 style="text-wrap:normal;color:deeppink;">
+                    </h3>
+                    <div id="row main">
+                        <div class="fof">
+                            <h1>حدث خطأ ....</h1>
+                            <span style="text-align:left;text-wrap:normal;color:mediumvioletred"> Model.Exception.Message</span>
+                            <br />
+                            <span style="text-align:left;text-wrap:normal;color:darkblue"> Model.Exception.InnerException</span>
+
+                            <img src="~/Content/FrontEnd/imgs/error.png" style="width:100%" />
+                        </div>
+                    </div>
+
+                </li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+@*<div class="col-12 col-md-12 col-lg-11 postDetails-wrapper">
+        <div class="col-12 col-md-12 col-lg-8 postDetails-inner">
+            <div id="row main">
+                <div class="fof">
+                    <h1>Error 404</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="red" style="text-align:center;">
+                        <li class="active">
+                            <h3 style="text-wrap:normal;color:deeppink;border-bottom-style:dashed">
+                                حدث خطأ من فضلك حاول مره اخرى
+
+                            </h3>
+                            <span style="text-align:left;text-wrap:normal;color:mediumvioletred"> @Model.Exception.Message</span>
+                            <br />
+                            <span style="text-align:left;text-wrap:normal;color:darkblue"> @Model.Exception.InnerException</span>
+
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row breadcrumb success">
+                <div class="col-md-12">
+                    <h3 style="text-align:center;color:red">
+                        بيانات غير صحيحة
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>*@

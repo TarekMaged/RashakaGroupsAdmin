@@ -1,0 +1,50 @@
+﻿@model RashakaGroupsAdmin.ViewModel.Comments
+@if (Model.comments.Count > 0)
+{
+    <h2 class="d-block d-md-block d-lg-none">
+        التعليقات
+    </h2>
+    foreach (var item in Model.comments)
+    {
+        <input type="hidden" value="@item.accountGuid" id="accountGuid" />
+
+        <div class="col-12 postComment" id="comment_@item.guid">
+            <input type="hidden" value="@item.accountGuid" id="accountGuid" />
+            <div class="row justify-content-end">
+                <div class="col-12 col-md-12 col-lg-12 comment">
+                    <div class="row">
+                        <div class="col-auto userDp">
+                            <img class="userCommentImg" onclick="window.location.href='/groupusers/userprofile?accountGuid=@item.accountGuid&groupId=@Model.groupId'" src="@item.image" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                        </div>
+                        <div class="col userInfo">
+                            <div class="d-flex align-items-center">
+                                <p class="userPosted">@item.userName</p>
+                            </div>
+                            <input type="hidden" value="@item.date" class="lastDate" />
+                            <p class="postDate"><i></i>  <span>تاريخ النشر</span>&nbsp; @item.date</p>
+                            <p>@item.text</p>
+                            <div class="socialInfo">
+                                <p> @item.replyCount <i class="comments" onclick="GetReplies('@item.replyCount','@item.guid', '@item.accountGuid')"></i></p>
+                                <p> @item.likeCount <i class="likes"></i></p>
+                                @* <p>  <i class="share"></i></p>  *@
+                                @*<p  onclick="deleteComment('@item.guid',this)"><i class="remove">x</i></p>*@
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-11 replies pr-0" id="commentReply_@item.guid">
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<script>
+    $(document).on("error", ".addCommentDp", function () {
+        $(this).attr('src', '/content/frontend/imgs/userDefault.png');
+    });
+</script>
+
+

@@ -1,0 +1,268 @@
+﻿@model RashakaGroupsAdmin.Models.UserProfileModel
+@using RashakaGroupsAdmin.Services;
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_HorizontalMenu")
+<div class="col-12 col-md-12 col-lg-11 memberProfile-wrapper">
+    <h2> @Model.GroupName <span>الأعضاء</span></h2>
+    <div class="col-12 col-md-12 col-lg-12 memberInfo">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-12 col-lg-auto">
+                <div class="row">
+                    <div class="col-auto memberDp">
+                        <img class="memberProfileImg" alt="userProfile" src="@Model.Account.image">
+                    </div>
+                    <div class="col memberData">
+                        <div class="d-flex">
+                            <p class="nameGender"> @Model.Account.name <span>@Model.Account.gender</span></p>
+                            <div class="postOptions-wrapper">
+                                @if (Model.CretatorId != Model.Account.id)
+                                {
+                                    <a class="groupOptions d-block d-md-block d-lg-none"></a>
+                                    <div class="optionPopup">
+
+                                        @if (Model.GroupUser.isAdmin != true)
+                                        {
+                                            <a href="#" class="assignAdmin2"> <i class="assignAdmin"></i> تعيين كأدمن </a>
+                                        }
+                                        <a href="#" class="deleteMember_2"> <i class="removeMemberResp"></i> حذف العضو </a>
+                                        @if (Model.GroupUser.isAdmin == true)
+                                        {
+                                            <a href="#" class="deleteAdmin"> <i></i>إلغاء كأدمن </a>
+                                        }
+
+
+                                    </div>}
+                            </div>
+                        </div>
+                        <p class="mail">@Model.Account.email</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-auto justify-content-between align-items-center memberOptions d-none d-md-none d-lg-block">
+                @if (Model.CretatorId != Model.Account.id)
+                {
+                    if (Model.GroupUser.isAdmin != true)
+                    {
+                        <a href="#" class="assignAdmin"> <i></i>تعيين كأدمن </a>
+                    }
+                    <a href="#" class="deleteMember"> <i></i>حذف العضو </a>
+                    if (Model.GroupUser.isAdmin == true)
+                    {
+                        <a href="#" class="deleteAdmin"> <i></i>إلغاء العضو كأدمن </a>
+                    }
+                }
+
+
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6 memberCounters">
+            <div class="row justify-content-between align-items-center">
+                <div class="counter">
+                    <p>عدد الخطوات</p>
+                    <span>@Model.GroupUser.allStepsCount</span>
+                </div>
+                <div class="counter">
+                    <p>مسافة</p>
+                    <span>@Model.GroupUser.allDistance.FormattedNumber()</span>
+                </div>
+                <div class="counter">
+                    <p>تاريخ الأنضمام</p>
+                    <span class="joinDate">@Model.GroupUser.joinDate.FormattedDate()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-12 memberPosts">
+        <h3>المنشورات</h3>
+        <div class="col-12 col-md-12 col-lg-12 membersPosts-inner px-0" id="grid">          
+            @foreach (var item in Model.UserPosts)
+            {
+                var postImage = !string.IsNullOrEmpty(item.shareImageUrl) ? item.shareImageUrl : item.image;
+                <div class="post" id="@item.id">
+                    <div class="row align-items-start">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col userInfo">
+                                    <p class="userPosted"> تم النشر بواسطة <span>@Model.Account.name </span></p>
+                                    <p class="postDate"><i></i>  <span>تاريخ النشر</span> @item.date.Value.FormattedDate()</p>
+                                    <p class="postText" onclick="window.location.href='/posts/Details/@item.id'">
+                                        @item.description
+                                    </p>
+
+                                </div>
+                                <div class="col-auto postImage">
+                                    @if (!string.IsNullOrEmpty(postImage))
+                                    {
+                                        <img class="userPostImg" src="@ImagesSevice.GetPostImageUrl(postImage)">
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="socialInfo">
+                                <p onclick="window.location.href='/posts/Details/@item.id'"> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                                <p> @item.totalLikes <i class="likes"></i></p>
+                                <p> @item.shareCount <i class="share"></i></p>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            }
+            <template id="memberPost">
+                <div class="post skeletonItem">
+                    <div class="row align-items-start">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col userInfo">
+                                    <div class="userPosted skeleton skeleton-text"></div>
+                                    <div class="postDate skeleton skeleton-text"></div>
+                                    <div class="postText skeleton skeleton-text"></div>
+
+                                </div>
+                                <div class="col-auto postImage">
+                                    <div class="userPostImg skeleton" src="imgs/postImg.png"></div>
+                                </div>
+                            </div>
+                            <div class="socialInfo skeleton skeleton-text"></div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </template>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        const grid = document.querySelector('#grid');
+        const cardTemplate = document.getElementById('memberPost')
+        for (let i = 0; i < 9; i++) {
+            grid.append(cardTemplate.content.cloneNode(true));
+        }
+        $('.skeletonItem').remove();
+        $(document).ready(function () {
+            SelectActivateMenuItem('members');
+            $('.skeletonItem').remove();
+        });
+
+        $(document).on("click", ".assignAdmin,.assignAdmin2", function () {
+            if (confirm("هل تريد تعيين هذا العضو كمسؤل فى المجموعة؟")) {
+                var user = {
+                    groupId: '@Model.GroupId',
+                    accountId: '@Model.Account.id',
+                    isAdmin: true
+                }
+                $.post("/GroupUsers/AssignOrDeleteAdmin", { user: user }, function (result) {
+                    if (result == true) {
+                        alert('تم تعيين هذا العضو كمسؤل فى المجموعة بنجاح...')
+                        $('.loader').hide();
+                        window.location.reload();
+                    } else {
+                        $('.loader').hide();
+                        alert('حدث خطأ حاول مره اخرى')
+                    }
+                });
+
+            }
+        });
+        $('.deleteAdmin').click(function () {
+             var user = {
+                    groupId: '@Model.GroupId',
+                    accountId: '@Model.Account.id',
+                    isAdmin: false
+                }
+            $.post("/GroupUsers/AssignOrDeleteAdmin", { user: user }, function (result) {
+                if (result == true) {
+                    alert('تم إلغاء العضو كمسؤل فى المجموعة بنجاح...')
+                    $('.loader').hide();
+                    window.location.reload();
+                } else {
+                    $('.loader').hide();
+                    alert('حدث خطأ حاول مره اخرى')
+                }
+            });
+        });
+
+        $('.removeMemberResp,.deleteMember,.deleteMember_2').click(function () {
+            if (confirm("هل تريد حذف هذا العضو من المجموعة؟")) {
+            var groupId = '@Model.GroupId';
+            var accountId = '@Model.Account.id';
+                $('.loader').show();
+                $.post("/groupUsers/DeleteUser?accountid=" + accountId + "&groupId=" + groupId, function (result) {
+                    if (result == true) {
+                        alert('تم الحذف')
+                        $('.loader').hide();
+                    } else {
+                        $('.loader').hide();
+                        alert('حدث خطأ حاول مره اخرى')
+                    }
+                });
+            }
+        });
+        var lastPageLoaded = false;
+        var page = 2;
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + 1 >= $(document).height() - $(window).height()) {
+               // alert('scroll')
+                if (lastPageLoaded == false) {
+                   
+                    GetUserPosts();
+                } else {
+                    $('.skeletonItem').remove();
+                }
+            }
+
+        });
+
+
+        function GetUserPosts() {
+            //alert('GetUserPosts')
+            for (let i = 0; i < 15; i++) {
+                grid.prepend(cardTemplate.content.cloneNode(true));
+            }
+              $.ajax({
+                type: "Get",
+                url: '/posts/GetUserPosts',
+                  async: true,
+                  dataType:"html",
+                data: {
+                    groupId: '@Model.GroupId',
+                    accountId: '@Model.Account.id',
+                    page: page
+                },
+                  success: function (result) {
+                      page++;
+                      if (result.length == 0) {
+                          lastPageLoaded = true;
+                      }
+                      if (page == 1) {
+                          $('.skeletonItem').remove();
+                          $('#grid').empty();
+                          $('#grid').html(result);
+
+                      } else {
+                          $('.skeletonItem').remove();
+                          $('#grid').append(result);
+                    }
+
+                },
+                error: function (result) {
+                    /*$('.skeletonRow').remove();*/
+                }
+            });
+        }
+
+
+    </script>
+}

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css?v=21">
+    <title>الرئيسية - المجموعات</title>
+
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="col-12 col-md-12 col-lg-12 main-wrapper">
+        <div class="row">
+            <div class="col-10 col-md-10 col-lg-3 px-0 sideMenu-wrapper">
+                <div id="overlayBg"></div>
+                <div id="myNav" class="overlay">
+                    <div class="overlay-content">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+                        <div class="col-12 col-md-12 col-lg-12 sideMenu">
+                            <nav id="nav" class="navbar">
+                                <div class="inner-menu">
+                                    <div class="userImage">
+                                        <img src="imgs/userDefault.png">
+                                        <label for="userImg" class="d-flex d-md-flex d-lg-flex mr-auto">
+                                            <input type="file" name="image" id="userImg" accept="image/jpeg ,image/png,image/bmp">
+                                            <i class="edit" onclick="openFileUpload(this,event)"></i>
+                                        </label>
+                                    </div>
+                                    <p class="userName">محمد أحمد</p>
+                                    <p class="version"> <span class="star"></span> نسخه مدفوعة</p>
+                                </div>
+
+                                <div class="sideList">
+                                    <ul>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"> <span class="home"></span> الرئيسية <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="groups"></span>    مجموعاتك
+                                            </a>
+                                            <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg" id="groupId">مجموعة الجرى الحر</a>
+                                                <a class="dropdown-item" href="/">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                    مشاة الرياض
+                                                </a>
+                                                <a class="dropdown-item active" href="/" id="groupId2">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                    مجموعة رشاقة
+                                                </a>
+                                                <div class="activeGroup">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="groupDetails.html" class="statistics"> <i></i>إحصائات</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="members.html" class="members"><i></i>أعضاء</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="posts.html" class="groupPosts"><i></i>منشورات</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="products"><i></i>المنتجات</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="membersReports.html" class="groupReports"><i></i> إبلاغات</a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a href="groupSettings.html" class="settings"><i></i>إعدادت</a>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+
+                                                <a class="dropdown-item" href="/" id="groupId3">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                    مشاة الرياض
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-9 px-0">
+                <div class="col-12 col-md-12 col-lg-12 px-0 navbarHeader">
+                    <nav id="navbar" class="navbar navbar-expand-lg w-100 justify-content-center">
+                        <span class="toggler-icon" onclick="openNav()"></span>
+                        <div class="row w-100">
+                            <div class="col-5 col-md-5 col-lg-5 d-none d-md-none d-lg-flex align-items-center">
+                                <div class="search-wrapper">
+                                    <i class="searchIcon"></i>
+                                    <input id="searchAuto" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                                    <i id="clear" class="textClear" onclick="clearText()" style="display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                                <div class="row w-100 h-100">
+                                    <div class="col-7 col-md-7 col-lg-7 d-none d-md-none d-lg-flex  align-items-center headerLinks">
+                                        <a class="addMember" href="addGroup.html">اضف مجموعة جديدة</a>
+
+                                        <a class="addPost" href="#" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-5 align-items-center d-flex respHeader">
+                                        <a class="notificationBell"> <span>3</span></a>
+                                        <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                                        <a class="addMemberIcon" href="addGroup.html"></a>
+                                        <a class="navbar-brand" href="/">
+                                            <div class="logo"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-12 col-md-12 col-lg-10 addGroup-wrapper groupSettings">
+                    <div class="row">
+                        <div class="col-12 d-block d-md-block d-lg-none px-0">
+                            <ul class="horizontalBar">
+                                <li>الرئيسة</li>
+                                <li class="active">المجموعة</li>
+                                <li>المنشورات</li>
+                                <li>الأعضاء</li>
+                                <li>المنشورات</li>
+                                <li>الرئيسة</li>
+                                <li>المجموعة</li>
+                                <li>المنشورات</li>
+                                <li>الأعضاء</li>
+                                <li>المنشورات</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-9 groupSettings-inner">
+                            <div class="row mx-0">
+                                <div class="groupCover order-2 order-md-2 order-lg-1">
+                                    <img src="imgs/groupHeaderNew.png">
+
+                                    <div class="groupDp">
+                                        <img src="imgs/defaultGroupNew.png">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12 col-lg-12 groupSettings-wrapper order-1 order-md-1 order-lg-2">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-8 groupInfo">
+                                            <h2 class="groupName">مجموعة الجرى الحر</h2>
+                                            <span class="groupType">نساء</span>
+                                            <p class="groupBio">مجموعة خاصة بالجرى الحر لصحه افضل مجموعة خاصة بالجرى الحر لصحه افضل</p>
+                                        </div>
+                                        <div class="col-7 col-md-8 col-lg-4 socialIcons d-flex justify-content-between">
+                                            <a class="facebook"></a>
+                                            <a class="instagram"></a>
+                                            <a class="twitter"></a>
+                                            <a class="whatsapp"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 col-lg-12 groupInfo-inner order-last">
+                                    <div class="d-flex align-items-center privacyEditResp">
+                                    <p class="privatGrp">مجموعة مغلقة</p>
+                                    <a class="editGroup mr-auto d-block d-md-block d-lg-none" href="editGroup.html">
+                                            تعديل المجموعة
+                                            <i></i>
+                                   </a>
+                                    </div>
+                                    <div class="location">
+                                        <p>المكان</p>
+                                        <p>مدينة الرياض السعودية الحى السعوى</p>
+                                    </div>
+                                    <div class="admins">
+                                        <div class="row no-gutters admins-wrapper align-items-center">
+                                            <p> قائمة المسؤلين عن المجموعة</p>
+                                            <a class="addAdmin" data-toggle="modal" data-target="#exampleModal"> اضف ادمن جديد<i></i></a>
+                                        </div>
+                                        <p>مدينة الرياض السعودية الحى السعوى</p>
+                                        <div class="adminNames">
+                                            <a> <i onclick="removeAdmin(this)"></i>محمد احمد</a>
+                                            <a> <i onclick="removeAdmin(this)"></i>محمد احمد</a>
+                                            <a> <i onclick="removeAdmin(this)"></i>محمد احمد</a>
+                                            <a> <i onclick="removeAdmin(this)"></i>محمد احمد</a>
+                                            <a> <i onclick="removeAdmin(this)"></i>محمد احمد</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-3 d-none d-md-none d-lg-block ads-wrapper">
+
+                            <a class="editGroup" href="editGroup.html">
+                                تعديل المجموعة
+                                <i></i>
+                            </a>
+
+                            <div class="col-12 col-md-12 col-lg-12 longAd ">
+                                <img src="imgs/longAd.png">
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 shortAd">
+                                <img src="imgs/shortAd.png">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg chooseAdminPopUp" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ابحث في الأعضاء</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="search-wrapper">
+                        <i class="searchIcon"></i>
+                        <input id="searchMembers" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                        <i class="searchButton"></i>
+                    </div>
+                    <div class="membersAdmin-wrapper">
+                        <div class="groupRadio">
+                            <label for="member1">
+                                <input type="checkbox" name="adminMember" value="محمد احمد" id="member1">
+                                <span class="checkmark"></span>
+                                محمد احمد</label>
+                        </div>
+                        <div class="groupRadio">
+                            <label for="member2">
+                                <input type="checkbox" name="adminMember" value="محمد احمد" id="member2">
+                                <span class="checkmark"></span>
+                                محمد احمد</label>
+                        </div>
+                        <div class="groupRadio">
+                            <label for="member3">
+                                <input type="checkbox" name="adminMember" value="محمد احمد" id="member3">
+                                <span class="checkmark"></span>
+                                محمد احمد</label>
+                        </div>
+                        <div class="groupRadio">
+                            <label for="member4">
+                                <input type="checkbox" name="adminMember" value="محمد احمد" id="member4">
+                                <span class="checkmark"></span>
+                                محمد احمد</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="acceptAdmin"> موافق</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg addPostPopup" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> اكتب منشور جديد </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-12 ml-auto popupBody">
+                    <div class="addPost-wrapper">
+                        <div class="row align-items-center d-none d-md-none d-lg-flex">
+                            <div class="col-auto userDp">
+                                <img src="imgs/group.jpg">
+                            </div>
+                            <div class="col userInfo">
+                                <div class="d-flex align-items-center">
+                                    <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-block d-md-block d-lg-none mx-0">
+                            <p class="postedAt">يتم النشر في جروب الجرى الحر</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 textarea-wrapper">
+                                <textarea placeholder="ابدأ بالكتابة هنا"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-9 postImgs d-flex">
+                                <div class="attachedImg">
+                                    <img src="imgs/mask_group_27-1-2x.png">
+                                    <div class="imgOverlay clearImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3 addImage">
+                                <a href="#" class="d-inline-block d-md-inline-block d-lg-none addPostResp">موافق</a>
+                                <label for="postImg" >
+                                    <input type="file" name="image" id="postImg" accept="image/jpeg ,image/png,image/bmp">
+                                    <button class="addImgBtn" onclick="openFileUpload(this,event)"><i></i>اضف صورة </button>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="addSharePost"> انشر</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js?v=3"></script>
+<script>
+    $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+    $("#groupId2").addClass("active"); /* add active to selected groupId only */
+</script>
+</body>
+</html>

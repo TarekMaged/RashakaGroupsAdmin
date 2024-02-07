@@ -1,0 +1,190 @@
+﻿@model RashakaGroupsAdmin.Models.GroupSettingsModel
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 col-md-12 col-lg-10 addGroup-wrapper groupSettings">
+    <div class="row">
+        @Html.Partial("_HorizontalMenu")
+        <div class="col-12 col-md-12 col-lg-9 groupSettings-inner">
+            <div class="row mx-0">
+                <div class="groupCover order-2 order-md-2 order-lg-1">
+
+                    <img src="https://api.rashaqa.net/Images/groups/@(Model.Group.coverImage.Contains("defaultGroupCover")?Model.Group.coverImage+".png":Model.Group.coverImage)">
+
+                    <div class="groupDp">
+                        <img src="https://api.rashaqa.net/Images/groups/@Model.Group.image">
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-12 groupSettings-wrapper order-1 order-md-1 order-lg-2">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-8 groupInfo">
+                            <h2 class="groupName">@Model.Group.name <span>@*@Model.Group.typeNavigation.name*@</span></h2>
+                            <span class="groupType">@Model.Group.typeNavigation.name</span>
+                            <p class="groupBio">@Model.Group.description</p>
+                        </div>
+                        <div class="col-7 col-md-8 col-lg-4 socialIcons d-flex justify-content-between">
+                            <a class="facebook"></a>
+                            <a class="instagram"></a>
+                            <a class="twitter"></a>
+                            <a class="whatsapp"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 groupInfo-inner order-last">
+                    <div class="d-flex align-items-center privacyEditResp">
+                        <p class="privatGrp">@Model.Group.privacy</p>
+                        <a class="editGroup mr-auto d-block d-md-block d-lg-none" href="/groups/edit/@Model.Group.id">
+                            تعديل المجموعة
+                            <i></i>
+                        </a>
+                    </div>
+                    <div class="location">
+                        <p>المكان</p>
+                        <p>@Model.Group.city - @Model.Group.country</p>
+                    </div>
+                    <div class="admins">
+                        <div class="row no-gutters admins-wrapper align-items-center">
+                            <p> قائمة المسؤلين عن المجموعة</p>
+                            <a id="@Model.Group.id" class="addAdmin" data-toggle="modal" data-target="#exampleModal"> اضف ادمن جديد<i></i></a>
+                        </div>
+                        @*<p>@Model.Group.city - @Model.Group.country</p>*@
+                        <div class="adminNames">
+                            <input type="hidden" value="@Model.Group.id" id="groupId" />
+                            @foreach (var item in Model.GroupAdmins)
+                            {
+                                <a>
+                                    @if (Model.Group.creatorId != item.id)
+                                    {
+                                        <i id="@item.id" onclick="removeAdmin(this)"></i>
+                                    }
+                                    @item.name
+                                </a>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-12 col-md-12 col-lg-3 d-none d-md-none d-lg-block ads-wrapper">
+
+            <a class="editGroup" href="/groups/edit/@Model.Group.id">
+                تعديل المجموعة
+                <i></i>
+            </a>
+
+            <div class="col-12 col-md-12 col-lg-12 longAd ">
+                <img src="~/content/frontend/imgs/longAd.png">
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 shortAd">
+                <img src="~/content/frontend/imgs/shortAd.png">
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="modal fade bd-example-modal-lg chooseAdminPopUp" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="exampleModalLabel">ابحث في الأعضاء</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="search-wrapper">
+                        <i class="searchIcon"></i>
+                        <input type="hidden" value="" id="adminGroupId" />
+                        <input id="searchMembers" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="SerachMemebers(this)">
+                        <i class="searchButton"></i>
+                    </div>
+                    <div class="membersAdmin-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="acceptAdmin"> موافق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var url = "https://rashaqa.net/invitation/gr/@Model.Group.id/@Model.Group.creatorId";
+          $(document).ready(function () {
+              SelectActivateMenuItem('settings');
+            $('.horizontalBar li').removeClass("active");
+            $('.settingsTopMenu').addClass("active");
+        });
+
+
+
+        $('.facebook').click(function () {
+            window.open("http://www.facebook.com/sharer.php?u=" + encodeURIComponent(url), 'facebook-popup', '_system', 'location=no');
+        })
+        $('.instagram').click(function () {
+
+            const navUrl = "https://www.instagram.com/?url=" + url;
+            window.open(navUrl, '_blank');
+        })
+
+        $('.twitter').click(function () {
+            var twitterTxt = 'دعوة إلى مجموعة ' + '@Model.Group.name' + '\r\n' + url;
+            twitterTxt = encodeURIComponent(twitterTxt);
+                window.open('https://twitter.com/share?url=' + escape(url) + '&text=' + '\r\n' + encodeURIComponent(title) + '\r\n', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+        })
+        $('.whatsapp').click(function () {
+            var whatsappTxt ='دعوة إلى مجموعة '+ '@Model.Group.name' + '\r\n' + url + '\r\n' ;
+            whatsappTxt = encodeURIComponent(whatsappTxt);
+            if (navigator.userAgent.toLowerCase().match(/mobile/i)) {
+                window.open('whatsapp://send?text=' + whatsappTxt, 'href', 'popup');
+            } else {
+                window.open('https://web.whatsapp.com/send?text=' + whatsappTxt, 'href', 'popup');
+            }
+        })
+
+
+        $(".acceptAdmin").click(function () {
+            var users = [];
+            $('input[name="adminMember"]:checked').each(function () {
+                var user = {
+                    isAdmin: true,
+                    accountId: $(this).attr('id'),
+                    groupId: $('#groupId').val()
+                }
+                users.push(user);
+            });
+            //alert('')
+            $.post("/GroupUsers/AddAdminList", { users: users }, function (result) {
+               // alert(result)
+                if (result == true) {
+                    $('input[name="adminMember"]:checked').each(function () {
+                        var val = $(this).val();
+                        var div = "<a>" + "<i onclick=\"removeAdmin(this)\"></i>" + val + "</a>";
+                        $(".adminNames").append(div);
+                    })
+                    $('.chooseAdminPopUp').modal('hide');
+                    alert('تم تعيين هذا العضو كمسؤل فى المجموعة بنجاح...')
+
+                } else {
+                    $('.loader').hide();
+                    alert('حدث خطأ حاول مره اخرى')
+                }
+            });
+
+        });
+
+    </script>
+}

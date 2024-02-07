@@ -1,0 +1,465 @@
+﻿@model RashakaGroupsAdmin.ViewModel.GroupPostsModel
+@using RashakaGroupsAdmin.Services;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int? commentsCount = Model.commentSystemCommentsCount ?? 0;
+    string userProfileImage = ImagesSevice.GetProfileImageUrl(Model.ownerProfileImage);
+    ViewBag.userProfileImage = userProfileImage;
+    string uerImage = User.Identity.Name.Split('|')[4];
+    var postImage = !string.IsNullOrEmpty(Model.shareImageUrl) ? Model.shareImageUrl : Model.image;
+}
+<input type="hidden" id="lastdate" value="@ViewBag.date" />
+<div class="col-12 col-md-12 col-lg-11 postDetails-wrapper">
+ <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 postDetails-inner">
+
+            <div class="col-12 postDetails">
+                <div class="post">
+                    <div class="row align-items-start">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-auto userDp">
+                                    <img onclick="window.location.href='/groupusers/userprofile?accountid=@Model.accountId&groupId=@Model.groupId'" class="userCommentImg" src="@userProfileImage" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                                </div>
+                                <div class="col userInfo">
+                                    <div class="d-flex align-items-center">
+                                        <p class="userPosted"> تم النشر بواسطة <span>@Model.ownerName  </span></p>
+                                        @if (Model.isPinned != true)
+                                        {
+                                            <a href="" class="pinPost" data-toggle="modal" data-target="#pinPostModal"><i></i> ثبت المنشور</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="" class="pinPost" data-toggle="modal"><i></i> </a>
+                                            @*<a href="" class="pinPost"><i></i> </a>*@
+                                        }
+                                        <div class="postOptions-wrapper">
+                                            <a class="groupOptions"></a>
+                                            <div class="optionPopup">
+                                                <a href="#" class="PinPostResp d-block d-md-block d-lg-none" data-toggle="modal" data-target="#pinPostModal"> <i></i> ثبت المنشور</a>
+                                                <a href="#" id="showDeletPostPoup" class="deleteGroup" data-toggle="modal" data-target="#deletePostModal"> <i></i> مسح المنشور</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="postDate"><i></i>  <span>تاريخ النشر</span> @Model.date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="row align-items-center">
+                                <div class="col postText d-flex align-items-center flex-wrap">
+                                    <p>@Model.description</p>
+                                    <div class="socialInfo">
+                                        <p> @Model.commentSystemCommentsCount <i class="comments"></i></p>
+                                        <p> @Model.totalLikes <i class="likes"></i></p>
+                                        <p> @Model.shareCount <i class="share"></i></p>
+                                    </div>
+                                </div>
+                                <div class="col-auto postImage d-flex align-items-center">
+                                    @if (!string.IsNullOrEmpty(postImage))
+                                    {
+                                        <img src="@ImagesSevice.GetPostImageUrl(postImage)">
+                                    }
+                                    @*<img src="@ImagesSevice.basePostsImageURL@Model.image" alt="صورة المنشور">*@
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="input-wrapper" id="currentPost">
+                    <input type="hidden" class="form-control artGuid" value="@Model.commentArtGuid">
+                    <input type="hidden" class="form-control postGuid" value="@Model.accountGuid">
+                    <input type="hidden" class="form-control postId" value="@Model.id">
+                    <input type="text" class="form-control commentText" placeholder="اضف تعليقك هنا">
+                    <img src="@uerImage" class="addCommentDp" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                    <a class="addComment" id="addComment" @*onclick="AddPostComment('','','')"*@></a>
+                </div>
+                <div class="commentsWrapper" id="grid">
+                    <h2 class="d-block d-md-block d-lg-none">
+                        التعليقات
+                    </h2>
+
+
+                </div>
+                <template id="commentTemplate">
+                    <div class="skeletonItem">
+                        <div class="col-12 postComment">
+                            <div class="row justify-content-end">
+                                <div class="col-12 col-md-12 col-lg-12 comment">
+                                    <div class="row">
+                                        <div class="col-auto userDp">
+                                            <div class="userCommentImg skeleton skeleton-text"></div>
+                                        </div>
+                                        <div class="col userInfo">
+                                            <div class="d-flex align-items-center">
+                                                <div class="userPosted skeleton skeleton-text"></div>
+                                            </div>
+                                            <div class="postDate skeleton skeleton-text"></div>
+                                            <div class="skeleton skeleton-text"></div>
+                                            <div class="socialInfo skeleton skeleton-text"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-11 replies pr-0">
+                                    <div class="row">
+                                        <div class="repliesWrapper">
+                                            <div class="col-12 reply">
+                                                <div class="row">
+                                                    <div class="col-auto userDp">
+                                                        <div class="userCommentImg skeleton skeleton-text"></div>
+                                                    </div>
+                                                    <div class="col userInfo">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="userPosted skeleton skeleton-text"></div>
+                                                        </div>
+                                                        <div class="postDate skeleton skeleton-text"></div>
+                                                        <div class="skeleton skeleton-text"></div>
+                                                        <div class="socialInfo skeleton skeleton-text"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+
+            </div>
+        </div>
+        <div class="col-4 d-none d-md-none d-lg-block">
+            <div class="mostActivePosts">
+                <div class="postDetails" id="mostActivePosts">
+                    <h2>اكثر المنشورات تفاعلا</h2>
+
+                </div>
+                <div class="col-12 morePosts">
+                    <a href="/posts/groupposts?groupid=@Model.groupId">المزيد</a>
+                </div>
+            </div>
+
+        </div>
+</div>
+</div>
+<div class="modal fade deletePostPopup" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <input type="hidden" value="" id="PostIdDelete" />
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title d-none d-md-none d-lg-block" id="deletePostLabel">سيتم حذف المنشور </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="deletePostBg">
+                    </div>
+                    <p>برجاء العلم عند حذف المنشور لن تتمكن من استعادته مره  </p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="acceptPin" id="submitDeletePost"> حذف </button>
+                <button type="button" class="declineDelete"> إلغاء </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade pinPostPopup" id="pinPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <input type="hidden" value="" id="pinnedPostId" />
+        <input type="hidden" value="" id="pinnedGroupId" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title d-none d-md-none d-lg-block" id="exampleModalLabel">سيتم تثبيت المنشور اعلى الشاشة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="pinPostBg">
+                    </div>
+                    <p>سيتم تثبيت هذا المنشور اعلى الشاشة ليكسب اهتمام جميع المشاركين والوصول لأكبر رقم من المستخدمين</p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="acceptPin" id="PinPost"> تأكيد التثبيت</button>
+                <button type="button" class="declinePin" data-dismiss="modal"> إلغاء </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    <script>
+
+        $(document).on("click", "#submitDeletePost", function () {
+            var id = "@Model.id";
+            $.post("/posts/DeletePost", { id }, function (res) {
+                if (res == true) {
+                    alert('تم الحذف بنجاح ')
+                    window.location.href = "/posts/groupposts?groupid=@(Model.groupId)";
+                } else {
+                    alert('حدث خطأ ')
+                }
+            });
+
+        });
+        $(".groupOptions").click(function () {
+            $('#PostIdDelete').val('@Model.id');
+        });
+        var lastCommentLoaded = false;
+        /* skeleton loading */
+        const grid = document.querySelector('#grid')
+        const cardTemplate = document.getElementById('commentTemplate')
+        for (let i = 0; i < 5; i++) {
+            grid.append(cardTemplate.content.cloneNode(true))
+        }
+
+        var commentsCount = '@commentsCount';
+        $(document).ready(function () {
+            GetMostInteractivePosts();
+            if (commentsCount > 0) {
+                GetPostComments();
+            } else { $('.skeletonItem').remove(); }
+        });
+        function GetMostInteractivePosts() {
+            var url = "/posts/GetMostInteractivePosts?groupId=@Model.groupId";
+            $.get(url, function (result) {
+         
+                $('#mostActivePosts').html(result);
+                $(".addCommentDp").attr('src', '@uerImage');
+        @*testImage('@uerImage');*@
+                    $(".addCommentDp").attr('onerror', 'onerror="this.onerror=null;this.src="/content/frontend/imgs/userDefault.png"');
+            });
+        }
+
+        //$('.addCommentDp').error(function () {
+        //    $(this).attr('src', '/content/frontend/imgs/userDefault.png');
+        //});
+
+
+
+        function GetPostComments() {
+            $.ajax({
+                type: "Get",
+                url: '@Url.Action("GetPostComments", "posts")',
+                data: {
+                    id: '@Model.id',
+                    commentArtGuid: '@Model.commentArtGuid',
+                    artGuid: '@Model.guid',
+                    date: $("#lastdate").val()
+                },
+                success: function (result) {
+                    //  alert(result.trim().length)
+                    if (result.trim().length == 0) {
+                        lastCommentLoaded = true;
+                    }
+                    $('.skeletonItem').remove();
+                    if ($("#lastdate").val() == '') {
+                        $('#grid').html(result);
+                    } else {
+                        $('#grid').append(result);
+                    }
+                    var lastDate = $('.lastDate').last().val();
+                    $("#lastdate").val(lastDate);
+                }
+            });
+        }
+
+        function GetReplies(replyCount, guid, accountGuid) {
+            /* if (replyCount > 0) {*/
+            var replyUrl = "/posts/GetCommentReplies?commentGuid=" + guid + "&accountGuid=" + accountGuid + "&date=";
+            $.get(replyUrl, function (result) {
+                //alert(result)
+                $('#commentReply_' + guid).html(result);
+            });
+            //} else {
+            //    var item = "<div class='input-wrapper replyInput'>< input type='text' class='form-control' placeholder= 'اضف الرد هنا' >"
+
+            //        +"<img src ='~/content/frontend/imgs/userDefault.png' class='addCommentDp' > <a href='javascript:void(0)' class='addReply'></a></div >";
+
+            //    $('#commentReply_' + guid).append(item);
+            //}
+        }
+        $(document).on("click", ".addComment", function () {
+
+            debugger
+            var comment = $(this).parent().find(".commentText").val();
+            if (comment !== "") {
+                // var postGuid = $(this).parent().find(".postGuid").val();
+                var postId = $(this).parent().find(".postId").val();
+                AddPostComment('@Model.accountGuid', postId, comment);
+            }
+        });
+
+        function AddPostComment(accountGuid, postId, comment) {
+            //alert('sssss')
+            for (let i = 0; i < 1; i++) {
+                grid.prepend(cardTemplate.content.cloneNode(true))
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddPostComment", "posts")',
+                data: {
+                    accountGUID: accountGuid,
+                    postId: postId,
+                    text: comment
+                },
+                success: function (result) {
+                    // alert(result)
+                    if (result == true) {
+                        $(".commentText").val('');
+                        commentsCount += 1;
+                        $("#lastdate").val('');
+                        GetPostComments();
+                    } else {
+                        alert("حدث خطأ حاول مرة اخرى");
+                    }
+                }
+            });
+        }
+
+        $(document).on("click", ".addReply", function () {
+            debugger
+            var inputText = $(this).parent().find(".replyText").val();
+            var commentGuid = $(this).parent().find('.commentGuid').val();
+
+            //var commentGuid = $(this).parent().parent().parent().parent().attr("id").split("_");
+            var accountGuid = $('#accountGuid').val();// $(this).parent().parent().parent().parent().parent().find("#accountGuid").val();
+            //alert(accountGuid)
+            addReply(accountGuid, commentGuid, inputText);
+        });
+        $(document).on("click", "#addReply", function () {
+            debugger
+            var inputText = $(this).parent().find("input").val();
+            var commentGuid = $(this).parent().parent().parent().parent().parent().attr("id").split("_");
+
+            //var commentGuid = $(this).parent().parent().parent().parent().attr("id").split("_");
+            var accountGuid = $('#accountGuid').val();// $(this).parent().parent().parent().parent().parent().find("#accountGuid").val();
+            //alert(accountGuid)
+            addReply(accountGuid, commentGuid[1], inputText);
+        });
+        function addReply(accountGuid, commentGuid, inputText) {
+
+            //alert(commentGuid);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("addReply", "posts")',
+                data: {
+                    commentGuid: commentGuid,
+                    text: inputText,
+                    commentOwnerGuid: accountGuid,
+                },
+                success: function (result) {
+                    if (result == "Success") {
+                        GetReplies(2, commentGuid, accountGuid)
+                        //if (inputText.val() !== "") {
+                        //    var div = " <div class=\"col-12 reply\">" + "<div class=\"row\">" + "<div class=\"col-auto userDp\">" + "<img src=\"imgs/group.jpg\">" + "</div>" +
+                        //        "<div class=\"col userInfo\">" + " <div class=\"d-flex align-items-center\">" + " <p class=\"userPosted\">محمد حسن احمد</p>" + "</div>" +
+                        //        "<p class=\"postDate\"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>" + "<p>" + inputText.val() + "</p>" + "<div class=\"socialInfo\">" +
+                        //        "<p> 0 <i class=\"comments\"></i></p>" + "<p> 0 <i class=\"likes\"></i></p>" + "<p> 0 <i class=\"share\"></i></p>" + " </div>" + " </div>"
+                        //        + " </div>" + " </div>";
+                        //    $(this).parent().parent().parent().find(".repliesWrapper").append(div);
+                        //    inputText.val("");
+                        //}
+                        //$("#maincomment").html='';
+                        //$("#AdminReply").val('');
+
+                        ////modalReply.style.display = "none";
+                        //$('#loader').hide();
+                        //alert("لقد تم اضافه الرد بنجاح");
+                    } else {
+                        alert("حدث خطأ حاول مرة اخرى");
+                    }
+                }
+            });
+
+        }
+        function deleteComment(guid, current) {
+            if (confirm("هل انت متاكد من حذف التعليق؟")) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeletePostComment", "commentSystem")',
+                    data: { postId: '@Model.id', commentGuid: guid },
+                    success: function (result) {
+                        //alert(result);
+                        if (result == "success") {
+                            $('#comment_' + guid).remove();
+
+                            alert(" تم الحذف بنجاح");
+                        } else {
+
+                            alert("حدث خطأ حاول مرة اخرى");
+                        }
+                    },
+                    failure: function (result) { alert("error" + " " + result); }
+                });
+            }
+        }
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + 1 >= $(document).height() - $(window).height()) {
+                if (lastCommentLoaded == false) {
+                    for (let i = 0; i < 5; i++) {
+                        grid.append(cardTemplate.content.cloneNode(true))
+                    }
+                    GetPostComments();
+                }
+            }
+        });
+
+        $(document).on('touchmove', function (event) {
+            event.preventDefault();
+            if ($('body').scrollTop() + 1 >= $('body').height() - $('body').height()) {
+                if (lastCommentLoaded == false) {
+                    for (let i = 0; i < 5; i++) {
+                        grid.append(cardTemplate.content.cloneNode(true))
+                    }
+                    GetPostComments();
+                }
+            }
+        });
+
+
+
+
+
+        $(document).on("click", ".pinPost,.PinPostResp", function () {
+            $('#pinnedPostId').val('@Model.id');
+            $('#pinnedGroupId').val('@Model.groupId');
+        });
+        $(document).on("click", "#PinPost", function () {
+            $('.loader').show();
+            var id = $('#pinnedPostId').val();
+            var groupId = $('#pinnedGroupId').val();
+            $.post("/posts/PinPost/", { id: id, groupId: groupId }, function (res) {
+                if (res == true) {
+                    $('#pinPostModal').modal('hide');
+                    window.location.reload();
+                    //alert('تم تثبيت المنشور بنجاح')
+                    //$('.pinPost').hide();
+                } else {
+                    alert('حدث خطا حاول مرة اخرى')
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css?v=21">
+    <title>الرئيسية - الخدمات</title>
+
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="col-12 col-md-12 col-lg-12 main-wrapper">
+        <div class="row">
+            <div class="col-10 col-md-10 col-lg-3 px-0 sideMenu-wrapper">
+                <div id="overlayBg"></div>
+                <div id="myNav" class="overlay">
+                    <div class="overlay-content">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+                        <div class="col-12col-md-12 col-lg-12 sideMenu">
+                            <nav id="nav" class="navbar">
+                                <div class="inner-menu">
+                                    <div class="userImage">
+                                        <img src="imgs/userDefault.png">
+                                        <label for="userImg" class="d-flex d-md-flex d-lg-flex mr-auto">
+                                            <input type="file" name="image" id="userImg" accept="image/jpeg ,image/png,image/bmp">
+                                            <i class="edit" onclick="openFileUpload(this,event)"></i>
+                                        </label>
+                                    </div>
+                                    <p class="userName">محمد أحمد</p>
+                                    <p class="version"> <span class="star"></span> نسخه مدفوعة</p>
+                                </div>
+
+                                <div class="sideList">
+                                    <ul>
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="#"> <span class="home"></span> الرئيسية <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown show ">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="groups"></span>    مجموعاتك
+                                            </a>
+                                            <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+                                                <div class="navItem-wrapper">
+                                                <a class="dropdown-item" href="" id="groupId1">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">مجموعة الجرى الحر</a>
+                                                    <div class="activeGroup">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="members"><i></i>أعضاء</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="statistics"> <i></i>إحصائات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="groupPosts"><i></i>منشورات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="products"><i></i>المنتجات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="groupReports"><i></i> إبلاغات</a>
+                                                            </li>
+                                                            <li class="active">
+                                                                <a href="#" class="settings"><i></i>إعدادت</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="navItem-wrapper">
+                                                <a class="dropdown-item" href="/" id="groupId2">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                    مشاة الرياض
+                                                </a>
+                                                 <div class="activeGroup">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#" class="statistics"> <i></i>إحصائات</a>
+                                                  </li>
+                                               <li>
+                                                   <a href="#" class="members"><i></i>أعضاء</a>
+                                               </li>
+                                               <li>
+                                                   <a href="#" class="groupPosts"><i></i>منشورات</a>
+                                               </li>
+                                               <li>
+                                                   <a href="#" class="interactions"><i></i> فاعليات</a>
+                                               </li>
+                                                  <li class="active">
+                                                      <a href="#" class="products"><i></i>المنتجات</a>
+                                                  </li>
+                                               <li>
+                                                   <a href="#" class="groupReports"><i></i> إبلاغات</a>
+                                               </li>
+                                               <li>
+                                                   <a href="#" class="settings"><i></i>إعدادت</a>
+                                               </li>
+                                           </ul>
+                                                        </div>
+
+                                       </div>
+                                                <div class="navItem-wrapper">
+                                                <a class="dropdown-item" href="/" id="groupId3">
+                                                    <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                    مجموعة رشاقة
+                                                </a>
+                                                    <div class="activeGroup">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="members"><i></i>أعضاء</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="statistics"> <i></i>إحصائات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="groupPosts"><i></i>منشورات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="products"><i></i>المنتجات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="groupReports"><i></i> إبلاغات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="settings"><i></i>إعدادت</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-9  px-0">
+                <div class="col-12 col-md-12 col-lg-12 px-0 navbarHeader">
+                    <nav id="navbar" class="navbar navbar-expand-lg w-100 justify-content-center">
+                        <span class="toggler-icon" onclick="openNav()"></span>
+                        <div class="row w-100">
+                            <div class="col-5 col-md-5 col-lg-5 d-none d-md-none d-lg-flex align-items-center">
+                                <div class="search-wrapper">
+                                    <i class="searchIcon"></i>
+                                    <input id="searchAuto" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                                    <i id="clear" class="textClear" onclick="clearText()" style="display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                                <div class="row w-100 h-100">
+                                    <div class="col-7 col-md-7 col-lg-7 d-none d-md-none d-lg-flex  align-items-center headerLinks">
+                                        <a class="addMember" href="addGroup.html">اضف مجموعة جديدة</a>
+
+                                        <a href="#" class="addPost" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-5 align-items-center d-flex respHeader">
+                                        <a class="notificationBell"> <span>3</span></a>
+                                        <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                                        <a class="addMemberIcon" href="addGroup.html"></a>
+                                        <a class="navbar-brand" href="/">
+                                            <div class="logo"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-12 d-block d-md-block d-lg-none px-0">
+                    <ul class="horizontalBar">
+                        <li>الرئيسة</li>
+                        <li>المجموعة</li>
+                        <li class="active">المنشورات</li>
+                        <li>الأعضاء</li>
+                        <li>المنشورات</li>
+                        <li>الرئيسة</li>
+                        <li>المجموعة</li>
+                        <li>المنشورات</li>
+                        <li>الأعضاء</li>
+                        <li>المنشورات</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-12 col-lg-11 products-wrapper">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="postsCount">  عدد المنتجات<span>80</span></th>
+                          <!--  <th scope="col" class="">ارسال تنبيه</th> -->
+                            <th scope="col">مدى توفره</th>
+                            <th scope="col">عدد المشتركين</th>
+                            <th scope="col">
+                                <div class="orderBy-wrapper mr-auto d-flex align-items-center justify-content-end">
+                                    <label for="order" class="orderLabel d-none d-md-none d-lg-inline-block"> <i class="filter"></i> فلتر حسب</label>
+                                    <div class="dropdown orderDropdown">
+                                        <button class="btn dropdown-toggle orderButton" type="button" id="order" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            الكل                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <label class="dropdown-item">
+                                                <input type="radio" name="subcategory"><span class="checkmark"></span> <a href="/meals/index"> الكل</a>
+                                            </label>
+                                            <label class="dropdown-item">
+                                                <input type="radio" name="subcategory"><span class="checkmark"></span> <a href="/meals/index"> المجموعات الأحدث</a>
+                                            </label>
+                                            <label class="dropdown-item">
+                                                <input type="radio" name="subcategory"><span class="checkmark"></span> <a href="/meals/index"> المجموعات الأكثر نشاطاً</a>
+                                            </label>
+                                            <label class="dropdown-item">
+                                                <input type="radio" name="subcategory"><span class="checkmark"></span> <a href="/meals/index"> الكل</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="grid">
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                    <div class="socialInfo">
+                                        <p> 12 <i class="comments"></i></p>
+                                        <p> 20 <i class="likes"></i></p>
+                                        <p> 20 <i class="share"></i></p>
+                                    </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="unavailable d-block d-md-block d-lg-none mr-auto"><i></i>غير متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="unavailable d-none d-md-none d-lg-block"><i></i>غير متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="order-first">
+                                <div class="productImg">
+                                    <div class="row">
+                                        <div class="col-4 col-md-3 col-lg-12 ">
+                                            <img class="prodServiceImg" src="imgs/group.jpg">
+                                            <i class="productIcon"></i>
+                                        </div>
+                                        <div class="col-8 col-md-8 d-lg-none px-0">
+                                            <p class="productName">اسم المنتج او الخدمة المعينة</p>
+                                            <p class="calender d-inline-block d-md-inline-block d-lg-none"> <i></i> <span>تاريخ النشر</span> 20/5/2022</p>
+                                            <p class="membersNo"><i></i> 50 <span>أعضاء مشتركون بالفعل</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="d-none d-md-none d-lg-inline-block prodServiceName" href="serviceDetails.html">عقار</a>
+                                <div class="col-4 col-md-4 col-lg-12">
+                                    <a class="groupOptions d-block d-md-block d-lg-none mr-auto"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                    <p class="available d-block d-md-block d-lg-none mr-auto"><i></i>متوفر </p>
+                                </div>
+                            </td>
+                            <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                            <td>
+                                <p class="available d-none d-md-none d-lg-block"><i></i>متوفر </p>
+                            </td>
+                            <td><p class="membersCount"> <span>10</span> اعضاء</p> </td>
+                            <td class="order-second">
+
+                                <div class="socialInfo">
+                                    <p> 12 <i class="comments"></i></p>
+                                    <p> 20 <i class="likes"></i></p>
+                                    <p> 20 <i class="share"></i></p>
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+                        <template id="productTemplate">
+                            <tr>
+                                <td class="order-first">
+                                    <div class="productImg">
+                                        <div class="row">
+                                            <div class="col-4 col-md-3 col-lg-12 ">
+                                                <div class="prodServiceImg skeleton"></div>
+                                            </div>
+                                            <div class="col-8 col-md-8 d-lg-none px-0">
+                                                <div class="productName skeleton skeleton-text"></div>
+                                                <div class="calender d-inline-block d-md-inline-block d-lg-none skeleton skeleton-text"></div>
+                                                <div class="membersNo skeleton skeleton-text"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="skeleton skeleton-text prodServiceName d-none d-md-none d-lg-inline-block"></div>
+                                    <div class="col-4 col-md-4 col-lg-12">
+                                        <a class="groupOptions skeleton d-block d-md-block d-lg-none mr-auto"></a>
+                                        <div class="optionPopup">
+                                            <a class="deleteGroup"> <i></i> مسح المجموعة</a>
+                                        </div>
+                                        <div class="available skeleton skeleton-text d-block d-md-block d-lg-none mr-auto"></div>
+                                    </div>
+                                </td>
+                                <!-- <td class="order-last"><a href="#" class="notfBell"></a></td> -->
+                                <td>
+                                    <div class="skeleton skeleton-text available d-none d-md-none d-lg-block"></div>
+                                </td>
+                                <td><div class="skeleton skeleton-text membersCount"></div> </td>
+                                <td class="order-second">
+
+                                    <div class="socialInfo skeleton skeleton-text"></div>
+
+                                </td>
+
+                            </tr>
+                        </template>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg addPostPopup" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> اكتب منشور جديد </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-12 ml-auto popupBody">
+                    <div class="addPost-wrapper">
+                        <div class="row align-items-center d-none d-md-none d-lg-flex">
+                            <div class="col-auto userDp">
+                                <div class="prodServiceImg skeleton"></div>
+                            </div>
+                            <div class="col userInfo">
+                                <div class="d-flex align-items-center">
+                                    <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-block d-md-block d-lg-none mx-0">
+                            <p class="postedAt">يتم النشر في جروب الجرى الحر</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 textarea-wrapper">
+                                <textarea placeholder="ابدأ بالكتابة هنا"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-9 postImgs d-flex">
+                                <div class="attachedImg">
+                                    <img src="imgs/mask_group_27-1-2x.png">
+                                    <div class="imgOverlay clearImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3 addImage">
+                                <a href="#" class="d-inline-block d-md-inline-block d-lg-none addPostResp">موافق</a>
+                                <label for="postImg" >
+                                    <input type="file" name="image" id="postImg" accept="image/jpeg ,image/png,image/bmp">
+                                    <button class="addImgBtn" onclick="openFileUpload(this,event)"><i></i>اضف صورة </button>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="addSharePost"> انشر</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js?v=3"></script>
+<script>
+    $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+    $("#groupId2").addClass("active"); /* add active to selected groupId only */
+
+    /* skeleton loading */
+    const grid = document.querySelector('#grid')
+    const cardTemplate = document.getElementById('productTemplate')
+    for (let i = 0; i < 9; i++) {
+        grid.append(cardTemplate.content.cloneNode(true))
+    }
+    /*  grid.innerHTML = ''  //remove skeleton cards from html
+     // append cards containing real data
+     */
+</script>
+</body>
+</html>

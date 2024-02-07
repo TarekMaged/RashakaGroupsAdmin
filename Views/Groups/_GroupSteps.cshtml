@@ -1,0 +1,148 @@
+﻿@model RashakaGroupsAdmin.Models.GroupStepsModel
+<div class="col-12 col-md-12 col-lg-12 chart-inner tab-pane fade in active show" id="stepsTab">
+    <div class="row chartInner-row">
+        <ul class="nav nav-tabs timingTab">
+            <li><a data-toggle="tab" href="#daily" aria-expanded="true" class="active">يومى</a>                                        </li>
+            <li><a data-toggle="tab" href="#monthly">شهرى</a></li>
+            <li><a data-toggle="tab" href="#yearly">سنوى</a></li>
+        </ul>
+    </div>
+    <div class="tab-content" id="stepsArea">
+        <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade in active show" id="daily">
+            <div class="graph-wrapper">
+                @{
+                    double? totalDaysSteps = (double)Model.dailySteps.Sum(x => x.steps);
+                    foreach (var item in Model.dailySteps)
+                    {
+                        var percent = Math.Ceiling(((decimal)item.steps * 100) / ((decimal)totalDaysSteps));//.ToString("0.00")+"%";
+                        string pernt = percent > 0 ? (percent + 10).ToString() + "%" : percent.ToString() + "%";
+                        <div class="graphBar">
+                            <div class="bar">
+                                <div class="barBg" style="height: @pernt">
+                                </div>
+                            </div>
+                            <div class="stepsCount tri-right"> <span>@item.steps.ToString("0.00") </span>خطوة</div>
+                            @switch (item.date.Value.DayOfWeek)
+                            {
+                                case DayOfWeek.Saturday:<label>السبت</label>
+                                    break;
+                                case DayOfWeek.Sunday: <label>الأحد</label>
+                                    break;
+                                case DayOfWeek.Monday: <label>الأثنين</label>
+                                    break;
+                                case DayOfWeek.Tuesday: <label>الثلاثاء</label>
+                                    break;
+                                case DayOfWeek.Wednesday: <label>الأربعاء</label>
+                                    break;
+                                case DayOfWeek.Thursday: <label>الخميس</label>
+                                    break;
+                                case DayOfWeek.Friday: <label>الجمعة</label>
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                        </div>
+                    }
+                    for (int i = 1; i <= 7 - Model.dailySteps.Count(); i++)
+                    {
+                        var date = Model.dailySteps.Count()>0? Model.dailySteps.Last().date.Value.AddDays(i):DateTime.Now.AddDays(i);
+                        <div class="graphBar">
+                            <div class="bar">
+                                <div class="barBg" style="height: 0%">
+                                </div>
+                            </div>
+                            <div class="stepsCount tri-right"> <span>0 </span>خطوة</div>
+                            @switch (date.DayOfWeek)
+                            {
+                                case DayOfWeek.Saturday:<label>السبت</label>
+                                    break;
+                                case DayOfWeek.Sunday: <label>الأحد</label>
+                                    break;
+                                case DayOfWeek.Monday: <label>الأثنين</label>
+                                    break;
+                                case DayOfWeek.Tuesday: <label>الثلاثاء</label>
+                                    break;
+                                case DayOfWeek.Wednesday: <label>الأربعاء</label>
+                                    break;
+                                case DayOfWeek.Thursday: <label>الخميس</label>
+                                    break;
+                                case DayOfWeek.Friday: <label>الجمعة</label>
+                                    break;
+                                default:
+                                    break;
+                            }
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="monthly">
+            <div class="graph-wrapper">
+                @{
+                    double? totalMonthSteps = (double)Model.monthSteps.Sum(x => x.steps);
+                    foreach (var item in Model.monthSteps.OrderBy(x=>x.day))
+                    {
+                        var percent = Math.Ceiling(((decimal)item.steps * 100) / ((decimal)totalMonthSteps));//.ToString("0.00")+"%";
+                        string pernt = percent > 0 ? (percent + 10).ToString() + "%" : percent.ToString() + "%";
+                        <div class="graphBar">
+                            <div class="bar">
+                                <div class="barBg" style="height: @pernt">
+                                </div>
+                            </div>
+                            <div class="stepsCount tri-right"> <span>@item.steps.ToString("0.00") </span>خطوة</div>
+                            <label>@item.day</label>
+                        </div>
+                    }
+                    for (int i = Model.monthSteps.Count()+1; i <= 31; i++)
+                    {
+                        <div class="graphBar">
+                            <div class="bar">
+                                <div class="barBg" style="height: 0%">
+                                </div>
+                            </div>
+                            <div class="stepsCount tri-right"> <span>0 </span>خطوة</div>
+                            <label>@i</label>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="yearly">
+            <div class="graph-wrapper">
+                @{
+                    double? totalYearSteps = (double)Model.yearSteps.Sum(x => x.steps);
+                    foreach (var item in Model.yearSteps.OrderBy(x => x.month))
+                    {
+                        var percent = Math.Ceiling(((decimal)item.steps * 100) / ((decimal)totalYearSteps));//.ToString("0.00")+"%";
+                        string pernt = percent > 0 ? (percent + 10).ToString() + "%" : percent.ToString() + "%";
+                        <div class="graphBar">
+                            <div class="bar">
+                                <div class="barBg" style="height:  @pernt">
+                                </div>
+                            </div>
+                            <div class="stepsCount tri-right"> <span>@item.steps.ToString("0.00") </span>خطوة</div>
+                            <label>@item.month</label>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("_GroupDistance", Model)
+
+
+
+
+
+
+
+
+
+

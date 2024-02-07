@@ -1,0 +1,74 @@
+﻿@model IEnumerable<RashakaGroupsAdmin.ViewModel.GroupPostsModel>
+@using RashakaGroupsAdmin.Services;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    string agent = HttpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
+}
+@foreach (var item in Model)
+{
+    var publisherImage = @ImagesSevice.GetProfileImageUrl(item.profileImage);
+    //var title = string.IsNullOrWhiteSpace(item.description) && string.IsNullOrWhiteSpace(item.title) ? "منشور" : !string.IsNullOrWhiteSpace(item.title) ? item.title : "منشور";
+    var title = !string.IsNullOrWhiteSpace(item.description) ? item.description : !string.IsNullOrWhiteSpace(item.title.Trim()) ? item.title : "منشور";
+
+    <tr class="@(item.isUnderRevision==true?"inReviewCard":"" )">
+        <td class="order-4">
+            <a href="/posts/Details/@item.id">@title</a>
+            @* <img class="postRespImg" src="@ImagesSevice.GetPostImageUrl(item.image)">*@
+            @if (!string.IsNullOrWhiteSpace(item.image))
+            {
+                <img onclick="window.location.href='/posts/Details/@item.id'" class="postRespImg" src="https://api.rashaqa.net/Images/groups/posts/@item.image" @*src="@ImagesSevice.GetPostImageUrl(item)"*@>
+            }
+        </td>
+        <!--  <td class="d-none d-lg-block"><a href="#" class="notfBell"></a></td> -->
+        <td class="order-first">
+            <a class="postedBy" href="/groupUsers/UserProfile?accountid=@item.accountId&groupId=@ViewBag.groupId">
+            <img src="@publisherImage" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">  @item.name</a>
+            <div class="col-12 d-block d-md-block d-lg-none respUser">
+                <div class="row">
+                    <div class="col-3 px-0 userImg">
+                        @if (true)
+                        {
+
+                        }
+                        <img class="respUserImg d-inline-block d-lg-none" src="@publisherImage" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                    
+                    </div>
+                    <div class="col-9 info-wrapper">
+                        <p class="userName">@item.name</p>
+                        <p class="calender"><i></i><span>تاريخ النشر</span> @item.date.FormattedDate()</p>
+                    </div>
+
+                </div>
+            </div>
+        </td>
+        <td class="order-3"><p class="calender"> <i></i>@item.date.FormattedDate()</p> </td>
+        @if (agent=="mobile")
+        {
+            <td class="order-last d-lg-none pt-0 socialResp" onclick="window.location.href='/posts/Details/@item.id'">
+                <div class="socialInfo">
+                    <p> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                    <p> @item.totalLikes <i class="likes"></i></p>
+                    <p> @item.shareCount <i class="share"></i></p>
+                </div>
+            </td>
+        }
+        else
+        {
+            <td class="order-2">
+                <div class="d-flex justify-content-end">
+                    <div class="socialInfo d-none d-md-none d-lg-block" onclick="window.location.href='/posts/Details/@item.id'">
+                        <p> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                        <p> @item.totalLikes <i class="likes"></i></p>
+                        <p> @item.shareCount <i class="share"></i></p>
+                    </div>
+                    @if (item.isUnderRevision == true)
+                    {
+                        <a class="inReview removeUnderLine">متوقف للمراجعه</a>
+                    }
+
+                </div>
+            </td>
+        }
+
+    </tr>
+}

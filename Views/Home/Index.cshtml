@@ -1,0 +1,196 @@
+﻿@model IEnumerable<RashakaGroupsAdmin.Models.Group>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-12 col-md-11 col-lg-11 groups-wrapper">
+    <div class="col-12 d-block d-md-block d-lg-none align-items-center px-0">
+        <div class="search-wrapper">
+            <i class="searchIcon"></i>
+            <input id="searchAutoResp" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+            <i id="clearResp" class="textClear" onclick="clearText()" style="display: none;"></i>
+        </div>
+    </div>
+    <div class="groups-innerWrapper d-flex align-items-center">
+        <h1 class="wrapper-header d-none d-md-none d-lg-block">مجموعاتى</h1>
+        <h2 class="d-block d-md-block d-lg-none orderResp">ترتيب حسب</h2>
+        <div class="orderBy-wrapper mr-auto d-flex align-items-center">
+            <label for="order" class="orderLabel d-none d-md-none d-lg-inline-block"> <i class="filter"></i> ترتيب حسب</label>
+            <div class="dropdown orderDropdown">
+                <button class="btn dropdown-toggle orderButton" type="button" id="order" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    المجموعات الأكثر نشاطاً
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <label class="dropdown-item groupFilterItem" id="all" @*onclick="FilterGroups('all',this)"*@>
+                        <input type="radio" name="orderItems"><span class="checkmark"></span> <a href="#"> الكل</a>
+                    </label>
+                    <label class="dropdown-item groupFilterItem" id="date" @*onclick="FilterGroups('date',this)"*@>
+                        <input type="radio" name="orderItems"><span class="checkmark"></span> <a href="#"> المجموعات الأحدث</a>
+                    </label>
+                    <label class="dropdown-item groupFilterItem" id="posts" @*onclick="FilterGroups('posts',this)"*@>
+                        <input type="radio" name="orderItems"><span class="checkmark"></span> <a href="#"> المجموعات الأكثر نشاطاً</a>
+                    </label>
+                    <label class="dropdown-item groupFilterItem" id="users" @*onclick="FilterGroups('users',this)"*@>
+                        <input type="radio" name="orderItems"><span class="checkmark"></span> <a href="#"> المجموعات الأكثر أعضاء</a>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <template id="card-template">
+        <div class="col-6 col-md-6 col-lg-4 group-card">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="row no-gutters w-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg-auto image-wrapper">
+                            <div class="skeleton groupUserImg"></div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg text-wrapper">
+                            <div class="inner-header">
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-text"></div>
+                            </div>
+                            <div class="skeleton skeleton-text date"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 cardFooter">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-5 col-md-5 col-lg-4 groupType order-3 skeleton">
+                            </div>
+                            <div class="col-7 d-flex d-md-block d-lg-none groupOptions-wrapper order-last">
+                                <div class="skeleton skeleton-text"></div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-8 order-1 order-first order-lg-last">
+                                <div class="members">
+                                    <div class="skeleton groupMemberImg"></div>
+                                    <div class="skeleton groupMemberImg"></div>
+                                    <div class="skeleton groupMemberImg"></div>
+                                    <div class="skeleton groupMemberImg"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </template>
+    <div class="col-12 col-md-12 col-lg-12 groups">
+        <div class="row" id="groupsGrid">
+
+            @foreach (var item in Model)
+            {
+                var groupType = item.typeId == 1 ? "رجال" : item.typeId == 2 ? "نساء" : "عامة";
+                <div class="col-6 col-md-6 col-lg-4 group-card">
+                    <div class="card groupCard" id="menuItem@(item.id)" onclick="window.location.href='/groups/Details/@item.id'">
+
+                        <div class="row no-gutters">
+                            <div class="row no-gutters w-100 align-items-center">
+                                <div class="col-12 col-md-12 col-lg-auto image-wrapper">
+                                    <img class="groupUserImg" src="https://api.rashaqa.net/Images/groups/@item.image">
+                                    @if (item.privacy == "closed"|| item.privacy == "hidden")
+                                    {
+                                        <i class="privateGroup"></i>
+                                    }
+
+                                </div>
+                                <div class="col-12 col-md-12 col-lg text-wrapper">
+                                    <div class="inner-header d-flex">
+                                        <h2>@item.name</h2>
+                                        <div class="groupOptions-wrapper">
+                                            <a class="groupOptions d-none d-md-none d-lg-block"></a>
+                                            <div class="optionPopup">
+                                                <a class="deleteGroup" data-toggle="modal" data-target="#deleteGroupModal" id="@item.id" @*onclick="SetGroupIdToDelete('@item.id')"*@> <i></i> حذف المجموعة</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <p class="date"> <i></i>تاريخ الأنشاء <span>@item.date.Value.ToString("dd/MM/yyyy")</span></p>
+
+                                </div>
+                            </div>
+                            <div class="col-12 cardFooter">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-5 col-md-5 col-lg-4 groupType order-3">
+                                        <i></i>
+                                        مجموعة @groupType
+                                    </div>
+                                    <div class="col-7 d-flex d-md-block d-lg-none groupOptions-wrapper order-last">
+                                        <a class="groupOptions"></a>
+                                        <div class="optionPopup">
+                                            <a class="deleteGroup" data-toggle="modal" data-target="#deleteGroupModal" onclick="SetGroupIdToDelete('@item.id')"> <i></i> حذف المجموعة</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-8 order-1 order-first order-lg-last">
+                                        <div class="members">
+                                            @foreach (var img in RashakaGroupsAdmin.Services.GroupsService.GetGroupUsersImages(item.id))
+                                            {
+                                                <img id="image" src="@img" class="groupMemberImg" alt="">
+                                            }
+                                            <div class="count">
+                                                +  @item.acceptedMembersCount
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade deletePostPopup" id="deleteGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <input type="hidden" value="" id="GroupIdDelete" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title d-none d-md-none d-lg-block" id="deletePostLabel">سيتم مسح المجموعة </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="deletePostBg">
+                    </div>
+                    <p>برجاء العلم عند مسح المجموعة لن تتمكن من استعادتها مره اخرى </p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="acceptPin" id="acceptDeleteGroup"> مسح </button>
+                <button type="button" class="declineDelete"> إلغاء </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+        LoadGroupsSkeleton();
+
+        const grid = document.querySelector('#groupsGrid')
+        const cardTemplate = document.getElementById('card-template')
+        $(document).ready(function () {
+            SelectActivateMenuItem('homeItem')
+            $('.horizontalBar li').removeClass("active");
+            $('.homeTopMenu').addClass("active");
+        });
+
+
+    </script>
+}
+
+
+
+
+

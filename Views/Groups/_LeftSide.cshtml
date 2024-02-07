@@ -1,0 +1,46 @@
+﻿@model RashakaGroupsAdmin.Models.GroupsDetailsModel
+@using RashakaGroupsAdmin.Services;
+<div class="col-12 col-md-12 col-lg-5">
+    <div class="analysis-wrapper">
+        <h3 class="d-block d-md-block d-lg-none">بطل الأسبوع</h3>
+        <div class="groupFirst d-none d-md-none d-lg-block">
+        </div>
+        <p class="groupChampion d-none d-md-none d-lg-block">بطل الأسبوع للمجموعة</p>
+        <div class="col-12 col-md-12 col-lg-12 weekChampion">
+            <div class="row">
+                <div class="col-auto col-md-3 col-lg-3 imageChampion">
+                    <img src="@Model.TopWeekAccount.image" alt="userImage" usemap="true">
+                    <i class="goodjob"></i>
+                </div>
+                <div class="col col-md-9 col-lg-9">
+                    <p class="hashtag d-block d-md-block d-lg-none">#شجع معنا البطل</p>
+                    <p class="Name">@(Model.TopWeekAccount.name)</p>
+                    <p class="activity"><span>@Model.TopWeekAccount.weekStepsCount</span> خطوة __ نشط على مدار <span>7</span> أيام</p>
+                    <a class="sharePost">شاركه كمنشور</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 groupMembers px-0">
+            <h3>الأعضاء</h3>
+            <div class="membersImgs">
+                @if (Model.TopFiveAccounts.Count() > 0)
+                {
+                    foreach (var item in Model.TopFiveAccounts)
+                    {
+                        <div class="memberImg-wrapper">
+                            <img id="image" alt="pic" src="@ImagesSevice.GetProfileImageUrl(item.image)" onclick="window.location.href = '/groupUsers/UserProfile?accountid=@item.id&groupId=@Model.group.id'">
+                            <p>@item.name </p>
+                        </div>
+                    }
+                }
+                <div class="allMembs-wrapper">
+                    <a class="allMembers" href="/Groupusers/members?page=1&groupId=@Model.group.id">
+                        الكل
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

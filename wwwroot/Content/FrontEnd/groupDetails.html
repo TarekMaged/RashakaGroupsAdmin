@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/charts.min.css">
+    <link rel="stylesheet" href="css/style.css?v=21">
+    <title>الرئيسية - المجموعات</title>
+
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="col-12 col-md-12 col-lg-12 main-wrapper">
+        <div class="row">
+            <div class="col-10 col-md-10 col-lg-3 px-0 sideMenu-wrapper">
+                <div id="overlayBg"></div>
+                <div id="myNav" class="overlay">
+                    <div class="overlay-content">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+                        <div class="col-12 col-md-12 col-lg-12 sideMenu">
+                            <nav id="nav" class="navbar">
+                                <div class="inner-menu">
+                                    <div class="userImage">
+                                        <img src="imgs/userDefault.png">
+                                        <label for="userImg" class="d-flex d-md-flex d-lg-flex mr-auto">
+                                            <input type="file" name="image" id="userImg" accept="image/jpeg ,image/png,image/bmp">
+                                            <i class="edit" onclick="openFileUpload(this,event)"></i>
+                                        </label>
+                                    </div>
+                                    <p class="userName">محمد أحمد</p>
+                                    <p class="version"> <span class="star"></span> نسخه مدفوعة</p>
+                                </div>
+
+                                <div class="sideList">
+                                    <ul>
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="#"> <span class="home"></span> الرئيسية <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown show ">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="groups"></span>    مجموعاتك
+                                            </a>
+                                            <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+                                                <div class="navItem-wrapper">
+                                                    <a class="dropdown-item" href="" id="groupId1">
+                                                        <img src="imgs/mask_group_2-2x.png" class="groupImg">مجموعة الجرى الحر</a>
+                                                    <div class="activeGroup">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="groupDetails.html" class="statistics"> <i></i>إحصائات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="members.html" class="members"><i></i>أعضاء</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="posts.html" class="groupPosts"><i></i>منشورات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="products"><i></i>المنتجات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="membersReports.html" class="groupReports"><i></i> إبلاغات</a>
+                                                            </li>
+                                                            <li class="active">
+                                                                <a href="groupSettings.html" class="settings"><i></i>إعدادت</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="navItem-wrapper">
+                                                    <a class="dropdown-item" href="/" id="groupId2">
+                                                        <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                        مشاة الرياض
+                                                    </a>
+                                                    <div class="activeGroup">
+                                                        <ul>
+                                                            <li class="active">
+                                                                <a href="groupDetails.html" class="statistics"> <i></i>إحصائات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="members.html" class="members"><i></i>أعضاء</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="posts.html" class="groupPosts"><i></i>منشورات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="products"><i></i>المنتجات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="membersReports.html" class="groupReports"><i></i> إبلاغات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="groupSettings.html" class="settings"><i></i>إعدادت</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="navItem-wrapper">
+                                                    <a class="dropdown-item" href="/" id="groupId3">
+                                                        <img src="imgs/mask_group_2-2x.png" class="groupImg">
+                                                        مجموعة رشاقة
+                                                    </a>
+                                                    <div class="activeGroup">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="groupDetails.html" class="statistics"> <i></i>إحصائات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="members.html" class="members"><i></i>أعضاء</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="posts.html" class="groupPosts"><i></i>منشورات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="interactions"><i></i> فاعليات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="products"><i></i>المنتجات</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="membersReports.html" class="groupReports"><i></i> إبلاغات</a>
+                                                            </li>
+                                                            <li class="active">
+                                                                <a href="groupSettings.html" class="settings"><i></i>إعدادت</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-9 px-0">
+                <div class="col-12 col-md-12 col-lg-12 px-0 navbarHeader">
+                    <nav id="navbar" class="navbar navbar-expand-lg w-100 justify-content-center">
+                        <span class="toggler-icon" onclick="openNav()"></span>
+                        <div class="row w-100">
+                            <div class="col-5 col-md-5 col-lg-5 d-none d-md-none d-lg-flex align-items-center">
+                                <div class="search-wrapper">
+                                    <i class="searchIcon"></i>
+                                    <input id="searchAuto" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                                    <i id="clear" class="textClear" onclick="clearText()" style="display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                                <div class="row w-100 h-100">
+                                    <div class="col-7 col-md-7 col-lg-7 d-none d-md-none d-lg-flex  align-items-center headerLinks">
+                                        <a class="addMember" href="addGroup.html">اضف مجموعة جديدة</a>
+
+                                        <a class="addPost" href="#" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                                    </div>
+
+                                    <div class="col-12 col-md-12 col-lg-5 align-items-center d-flex respHeader">
+                                        <a class="notificationBell"> <span>3</span></a>
+                                        <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                                        <a class="addMemberIcon" href="addGroup.html"></a>
+                                        <a class="navbar-brand" href="/">
+                                            <div class="logo"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-12 col-md-12 col-lg-11 groupDetails-wrapper">
+                    <div class="row no-gutters groupDetailsRow">
+                        <div class="detailsHeader order-1">
+                        <h1>مجموعة رشاقة</h1>
+                      <a href="#" class="d-none d-md-none d-lg-block" data-toggle="modal" data-target="#addServiceModal"> اضف المنتجات والخدمات <i></i></a>
+                        <a href="#" class="d-block d-md-block d-lg-none" data-toggle="modal" data-target="#addServiceModal" data-backdrop="false"> اضف المنتجات  <i></i></a>
+                        </div>
+                        <p class="bio order-3 order-md-3 order-lg-2">سعد الندوة العالمية للشباب الإسلامي "وامي" بالتعاون مع مركز تعزيز الصحة وتطبيق "رشاقة" انضمامكم لمسابقة "تحدي وامي للمشي". وتهدف المسابقة إلى تعزيز صحة الشباب ونشر ثقافة المشي، وتغيير سلوكيات الخمول والتحفيز على الرياضة، وتستهدف المسابقة مشاركة الناطقين باللغة العربية في جميع انحاء العالم</p>
+                        <div class="detailsInfo order-2 order-md-2 order-lg-3">
+                            <div class="infoDiv">
+                                <p class="infoHeader">النوع</p>
+                                <p class="infoText">عامة</p>
+                            </div>
+                            <div class="infoDiv">
+                                <p class="infoHeader">الخصوصية</p>
+                                <p class="infoText">مفتوحة</p>
+                            </div>
+                            <div class="infoDiv">
+                                <p class="infoHeader">المكان</p>
+                                <p class="infoText">الرياض - المملكة العربية السعودية</p>
+                            </div>
+                            <div class="infoDiv">
+                                <p class="infoHeader">تاريخ البدء</p>
+                                <p class="infoText">23/6/2022</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 group-counters">
+                        <div class="row counters-row">
+                            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                                <div class=" col-12 col-md-12 col-lg-12 counterCard steps">
+                                <div class="row mx-0 h-100 align-items-center">
+                                    <div class="col-12 col-md-12 col-lg image-wrapper">
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg countDetails">
+                                        <p class="count">325632</p>
+                                        <p class="countInfo">اجمالي الخطوات</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                                <div class="col-12 col-md-12 col-lg-12 counterCard distance ">
+                                    <div class="row mx-0 h-100 align-items-center">
+                                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg countDetails">
+                                            <p class="count">325632</p>
+                                            <p class="countInfo">اجمالي الخطوات</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                                <div class=" col-12 col-md-12 col-lg-12 counterCard reports ">
+                                    <div class="row mx-0 h-100 align-items-center">
+                                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg countDetails">
+                                            <p class="count">30</p>
+                                            <p class="countInfo">إجمالى الإبلاغات</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                                <div class=" col-12 col-md-12 col-lg-12 counterCard posts ">
+                                    <div class="row mx-0 h-100 align-items-center">
+                                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg countDetails">
+                                            <p class="count">20</p>
+                                            <p class="countInfo">إجمالى المنشورات</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 statistics-wrapper px-0">
+                        <div class="row mx-0">
+                            <div class="col-12 col-md-12 col-lg-6 chartTiming-wrapper px-0">
+                                <div class="chart-wrapper">
+                                <div class="col-12 col-md-12 col-lg-12 chart-header">
+                                   <div class="row no-gutters align-items-center">
+                                       <h2>
+                                           الأحصائات
+                                       </h2>
+                                       <ul class="nav nav-tabs typesTab">
+                                           <li>
+                                       <a class="stepsTab active" data-toggle="tab" href="#stepsTab"  aria-expanded="true">خطوات</a>
+                                           </li>
+                                           <li>
+                                       <a class="distanceTab" data-toggle="tab" href="#distanceTab">مسافة</a>
+                                           </li>
+                                       </ul>
+                                   </div>
+                                    <div class="tab-content graphHeader">
+                                    <p class="average">المتوسط اسبوعياً <span> 4000</span></p>
+                                    <p class="currentNumber">1,298 <span>
+                                        <i class="numberUp"></i>
+                                        <!-- if number less -->
+                                       <i class="numberDown"></i>
+                                    اكبر%15
+                                    </span></p>
+
+                                    <div class="col-12 col-md-12 col-lg-12 chart-inner tab-pane fade in active show" id="stepsTab">
+                                        <div class="row chartInner-row">
+
+                                        <ul class="nav nav-tabs timingTab">
+                                            <li>
+                                                <a data-toggle="tab" href="#daily"  aria-expanded="true" class="active">يومى</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#monthly" >شهرى</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#yearly">سنوى</a>
+                                            </li>
+                                        </ul>
+                                        </div>
+                                        <div class="tab-content">
+                                        <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade in active show" id="daily">
+                                            <div class="graph-wrapper">
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 70%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>سبت</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 30%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>احد</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 90%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>اثنين</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 10%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>ثلاثاء</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 100%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>اربعاء</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 70%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>خميس</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 50%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>جمعة</label>
+                                            </div>
+                                         </div>
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="monthly">
+                                            <div class="graph-wrapper">
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 70%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>1</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 30%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>2</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 90%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>3</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 10%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>4</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 100%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>5</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 70%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>6</label>
+                                            </div>
+                                            <div class="graphBar">
+                                                <div class="bar">
+                                                    <div class="barBg" style="height: 50%">
+                                                    </div>
+                                                </div>
+                                                <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                <label>7</label>
+                                            </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>8</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>9</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>10</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>11</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>12</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>13</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>14</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>15</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>16</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>17</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>18</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>19</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>20</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>21</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>22</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>23</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>24</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>25</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>26</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>27</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>28</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>29</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>30</label>
+                                                </div>
+                                                <div class="graphBar">
+                                                    <div class="bar">
+                                                        <div class="barBg" style="height: 50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                    <label>31</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="yearly">
+                                                <div class="graph-wrapper">
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>1</label>
+                                                    </div>
+
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 90%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>2</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 10%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>3</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 100%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>4</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>5</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>6</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>7</label>
+                                                    </div>
+                                                        <div class="graphBar">
+                                                            <div class="bar">
+                                                                <div class="barBg" style="height: 30%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                            <label>8</label>
+                                                        </div>
+                                                        <div class="graphBar">
+                                                            <div class="bar">
+                                                                <div class="barBg" style="height: 30%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                            <label>9</label>
+                                                        </div>
+                                                        <div class="graphBar">
+                                                            <div class="bar">
+                                                                <div class="barBg" style="height: 30%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                            <label>10</label>
+                                                        </div>
+                                                        <div class="graphBar">
+                                                            <div class="bar">
+                                                                <div class="barBg" style="height: 30%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                            <label>11</label>
+                                                        </div>
+                                                        <div class="graphBar">
+                                                            <div class="bar">
+                                                                <div class="barBg" style="height: 30%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                            <label>12</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    <div class="col-12 col-md-12 col-lg-12 chart-inner tab-pane fade" id="distanceTab">
+                                        <ul class="nav nav-tabs timingTab">
+                                            <li > <a data-toggle="tab" href="#dailyDistance"  aria-expanded="true" class="active">يومى</a></li>
+                                            <li> <a data-toggle="tab" href="#monthlyDistance">شهرى</a></li>
+                                            <li> <a data-toggle="tab" href="#yearlyDistance">سنوى</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade in active show" id="dailyDistance">
+                                                <div class="graph-wrapper">
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>سبت</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>احد</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 90%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>اثنين</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 10%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>ثلاثاء</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 100%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>اربعاء</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>خميس</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>جمعة</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="monthlyDistance">
+                                                <div class="graph-wrapper">
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>1</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>2</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 90%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>3</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 10%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>4</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 100%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>5</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>6</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>7</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>8</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>9</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>10</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>11</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>12</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>13</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>14</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>15</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>16</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>17</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>18</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>19</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>20</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>21</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>22</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>23</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>24</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>25</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>26</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>27</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>28</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>29</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>30</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>31</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12 col-lg-12 px-0  tab-pane fade" id="yearlyDistance">
+                                                <div class="graph-wrapper">
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>1</label>
+                                                    </div>
+
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 90%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>2</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 10%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>3</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 100%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>4</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 70%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>5</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 50%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>6</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>7</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>8</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>9</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>10</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>11</label>
+                                                    </div>
+                                                    <div class="graphBar">
+                                                        <div class="bar">
+                                                            <div class="barBg" style="height: 30%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="stepsCount tri-right"> <span>56748 </span>خطوة</div>
+                                                        <label>12</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-5">
+                                <div class="analysis-wrapper">
+                                    <h3 class="d-block d-md-block d-lg-none">بطل الأسبوع</h3>
+                                    <div class="groupFirst d-none d-md-none d-lg-block">
+                                        </div>
+                                    <p class="groupChampion d-none d-md-none d-lg-block">بطل الأسبوع للمجموعة</p>
+                                    <div class="col-12 col-md-12 col-lg-12 weekChampion">
+                                        <div class="row">
+                                            <div class="col-auto col-md-3 col-lg-3 imageChampion">
+                                                <img src="imgs/userDefault.png">
+                                                <i class="goodjob"></i>
+                                            </div>
+                                            <div class="col col-md-9 col-lg-9">
+                                                <p class="hashtag d-block d-md-block d-lg-none">#شجع معنا البطل</p>
+                                                <p class="Name">عبد الرحمن أبو عوف</p>
+                                                <p class="activity"><span>23658</span> خطوة __ نشط على مدار <span> 5</span> أيام</p>
+                                                <a class="sharePost">شاركه كمنشور</a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-12 groupMembers px-0">
+                                        <h3>الأعضاء</h3>
+                                        <div class="membersImgs">
+                                            <div class="memberImg-wrapper">
+                                                <img src="imgs/userDefault.png">
+                                                <p>محمد</p>
+                                            </div>
+
+                                            <div class="memberImg-wrapper">
+                                                <img src="imgs/userDefault.png">
+                                                <p>محمد</p>
+                                            </div>
+                                            <div class="memberImg-wrapper">
+                                                <img src="imgs/userDefault.png">
+                                                <p>محمد</p>
+                                            </div>
+                                            <div class="memberImg-wrapper">
+                                                <img src="imgs/userDefault.png">
+                                                <p>محمد</p>
+                                            </div>
+                                            <div class="memberImg-wrapper">
+                                                <img src="imgs/userDefault.png">
+                                                <p>محمد</p>
+                                            </div>
+                                            <div class="allMembs-wrapper">
+                                                <a class="allMembers" href="#">
+                                                    الكل
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         <div class="col-12 col-md-12 col-lg-1 longAd d-none d-md-none d-lg-flex align-items-center">
+                                <img src="imgs/longAd.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg addPostPopup" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> اكتب منشور جديد </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-12 ml-auto popupBody">
+                    <div class="addPost-wrapper">
+                        <div class="row align-items-center d-none d-md-none d-lg-flex">
+                            <div class="col-auto userDp">
+                                <img src="imgs/group.jpg">
+                            </div>
+                            <div class="col userInfo">
+                                <div class="d-flex align-items-center">
+                                    <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-block d-md-block d-lg-none mx-0">
+                            <p class="postedAt">يتم النشر في جروب الجرى الحر</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 textarea-wrapper">
+                                <textarea placeholder="ابدأ بالكتابة هنا"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-9 postImgs d-flex">
+                                <div class="attachedImg">
+                                    <img src="imgs/mask_group_27-1-2x.png">
+                                    <div class="imgOverlay clearImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3 addImage">
+                                <a href="#" class="d-inline-block d-md-inline-block d-lg-none addPostResp">موافق</a>
+                                <label for="postImg" >
+                                    <input type="file" name="image" id="postImg" accept="image/jpeg ,image/png,image/bmp">
+                                    <button class="addImgBtn" onclick="openFileUpload(this,event)"><i></i>اضف صورة </button>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="addSharePost"> انشر</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add service -->
+<div class="modal fade bd-example-modal-lg addPostPopup" id="addServiceModal" tabindex="-1" role="dialog" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addServiceModalLabel"> اضف خدمة جديدة </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-12 ml-auto popupBody">
+                    <div class="addPost-wrapper">
+                        <div class="row align-items-center d-none d-md-none d-lg-flex">
+                            <div class="col-auto userDp">
+                                <img src="imgs/group.jpg">
+                            </div>
+                            <div class="col userInfo">
+                                <div class="d-flex align-items-center">
+                                    <p class="userPosted"> تم النشر بواسطة <span>محمد حسن احمد </span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-block d-md-block d-lg-none mx-0">
+                            <p class="postedAt">يتم النشر في جروب الجرى الحر</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 textarea-wrapper">
+                                <textarea placeholder="ابدأ بالكتابة هنا"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-9 postImgs d-flex">
+                                <div class="attachedImg">
+                                    <img src="imgs/mask_group_27-1-2x.png">
+                                    <div class="imgOverlay clearImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3 addImage">
+                                <a href="#" class="d-inline-block d-md-inline-block d-lg-none addPostResp">موافق</a>
+                                <label for="postImg" >
+                                    <input type="file" name="image" id="postImgService" accept="image/jpeg ,image/png,image/bmp">
+                                    <button class="addImgBtn" onclick="openFileUpload(this,event)"><i></i>اضف صورة </button>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="addSharePost"> انشر</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js?v=3"></script>
+<script>
+    $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+    $("#groupId2").addClass("active"); /* add active to selected groupId only */
+</script>
+</body>
+</html>

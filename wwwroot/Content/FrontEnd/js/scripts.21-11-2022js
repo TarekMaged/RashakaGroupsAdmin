@@ -1,0 +1,33 @@
+$(document).ready(function(){
+    /* change parent color when input checked */
+    $(".radio-wrapper .radioDiv input[type=radio]").change(function() {
+        if(this.checked) {
+            //Do stuff
+            /* alert($(this).attr("id"));*/
+            $(".radio-wrapper input[type=radio]").parent().removeClass("active");
+            $(this).parent().addClass("active");
+        }
+    });
+
+    /* change parent color when input checked */
+    $(".radio-wrapper .groupRadio input[type=radio]").change(function() {
+        if(this.checked) {
+            //Do stuff
+            /*alert($(this).attr("id"));*/
+            $(".radio-wrapper input[type=radio]").parent().parent().removeClass("active");
+            $(this).parent().parent().addClass("active");
+        }
+    });
+
+    $(".groupOptions").click(function() {
+        $(this).parent().find(".deleteGroup").toggle('show');
+    })
+
+})
+
+function openNav() {
+    //debugger
+    /* open navbar in mobile */
+    $("#overlayBg").fadeIn();
+    document.getElementById("myNav").style.width = "80%";
+}

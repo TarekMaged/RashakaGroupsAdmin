@@ -1,0 +1,153 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RashakaGroupsAdmin
+build_property.RootNamespace = RashakaGroupsAdmin
+build_property.ProjectDir = F:\projects\Final\RashakaApi_backup\Groups admin\RashakaGroupsAdminCore7\RashakaGroupsAdmin\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\projects\Final\RashakaApi_backup\Groups admin\RashakaGroupsAdminCore7\RashakaGroupsAdmin
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/ErrorHandler/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JIYW5kbGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/ErrorHandler/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JIYW5kbGVyXE5vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/Reporting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXFJlcG9ydGluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXFNldHRpbmdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/_GroupDistance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXF9Hcm91cERpc3RhbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/_GroupSteps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXF9Hcm91cFN0ZXBzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Groups/_LeftSide.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBzXF9MZWZ0U2lkZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/GroupUsers/Members.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBVc2Vyc1xNZW1iZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/GroupUsers/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBVc2Vyc1xVc2VyUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/GroupUsers/_MembersSkeleton.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JvdXBVc2Vyc1xfTWVtYmVyc1NrZWxldG9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Home/MenuGroups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW51R3JvdXBzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Home/_FilteredGroups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfRmlsdGVyZWRHcm91cHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/GroupPosts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcR3JvdXBQb3N0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/UserPosts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcVXNlclBvc3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/_CommentReplies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcX0NvbW1lbnRSZXBsaWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/_GroupPosts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcX0dyb3VwUG9zdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/_MostInteractivePost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcX01vc3RJbnRlcmFjdGl2ZVBvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/_PostComments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcX1Bvc3RDb21tZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Posts/_UserPosts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcX1VzZXJQb3N0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Shared/_HorizontalMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ib3Jpem9udGFsTWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/Users/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/projects/Final/RashakaApi_backup/Groups admin/RashakaGroupsAdminCore7/RashakaGroupsAdmin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

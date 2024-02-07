@@ -1,0 +1,229 @@
+﻿@model RashakaGroupsAdmin.Models.GroupsDetailsModel
+@using RashakaGroupsAdmin.Services;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-12 col-md-12 col-lg-11 groupDetails-wrapper">
+    <div class="row no-gutters groupDetailsRow">
+        <div class="detailsHeader order-1">
+            <h1>@Model.group.name</h1>
+
+            <a href="#" class="d-none d-md-none d-lg-block" data-toggle="modal" data-target="#addServiceModal"> اضف المنتجات والخدمات <i></i></a>
+            <a href="#" class="d-block d-md-block d-lg-none" data-toggle="modal" data-target="#addServiceModal" data-backdrop="false"> اضف المنتجات  <i></i></a>
+
+        </div>
+        <p class="bio order-3 order-md-3 order-lg-2">@Model.group.description</p>
+        <div class="detailsInfo order-2 order-md-2 order-lg-3">
+            <div class="infoDiv">
+                <p class="infoHeader">النوع</p>
+                <p class="infoText">@(Model.group.typeId!=null? Model.group.typeNavigation.name:"عامة")</p>
+            </div>
+            <div class="infoDiv">
+                <p class="infoHeader">الخصوصية</p>
+                <p class="infoText">@Model.group.privacy</p>
+            </div>
+            <div class="infoDiv">
+                <p class="infoHeader">المكان</p>
+                <p class="infoText">@Model.group.country -@Model.group.city </p>
+            </div>
+            <div class="infoDiv">
+                <p class="infoHeader">تاريخ البدء</p>
+                <p class="infoText">@Model.group.date.FormattedDate()</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-12 group-counters">
+        <div class="row counters-row">
+            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                <div class=" col-12 col-md-12 col-lg-12 counterCard steps">
+                    <div class="row mx-0 h-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg countDetails">
+                            <p class="count">@Model.allSteps.FormattedNumber()</p>
+                            <p class="countInfo">اجمالي الخطوات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                <div class="col-12 col-md-12 col-lg-12 counterCard distance ">
+                    <div class="row mx-0 h-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg countDetails">
+                            <p class="count">@Model.allDistance.FormattedNumber()</p>
+                            <p class="countInfo">اجمالي المسافة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                <div class=" col-12 col-md-12 col-lg-12 counterCard reports ">
+                    <div class="row mx-0 h-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg countDetails">
+                            <p class="count">@(Model.group.reportsCount??0)</p>
+                            <p class="countInfo">إجمالى الإبلاغات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col-md-5 col-lg-3 card-wrapper">
+                <div class=" col-12 col-md-12 col-lg-12 counterCard posts ">
+                    <div class="row mx-0 h-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg image-wrapper">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg countDetails">
+                            <p class="count">@(Model.group.postsCount??0)</p>
+                            <p class="countInfo">إجمالى المنشورات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-12 col-md-12 col-lg-12 statistics-wrapper px-0">
+        <div class="row mx-0">
+            <div class="col-12 col-md-12 col-lg-6 chartTiming-wrapper px-0">
+                <div class="chart-wrapper">
+                    <div class="col-12 col-md-12 col-lg-12 chart-header">
+                        <div class="row no-gutters align-items-center">
+                            <h2>
+                                الأحصائات
+                            </h2>
+                            <ul class="nav nav-tabs typesTab">
+                                <li>
+                                    <a class="stepsTab active" data-toggle="tab" href="#stepsTab" aria-expanded="true">خطوات</a>
+                                </li>
+                                <li>
+                                    <a class="distanceTab" data-toggle="tab" href="#distanceTab">مسافة</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content graphHeader">
+                            <p class="average">
+                                المتوسط اسبوعياً <span class="averageStepsDistance">
+                                    @Model.averageWeekSteps.FormattedNumber()
+                                </span>
+                            </p>
+                            <p class="currentNumber">
+                                @Model.totalWeekSteps.FormattedNumber()
+                                <span>
+                                    <i class="numberUp"></i>
+                                    @*اكبر%15*@
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-5">
+                <div class="analysis-wrapper">
+                    <h3 class="d-block d-md-block d-lg-none">بطل الأسبوع</h3>
+                    <div class="groupFirst d-none d-md-none d-lg-block">
+                    </div>
+                    <p class="groupChampion d-none d-md-none d-lg-block">بطل الأسبوع للمجموعة</p>
+                    <div class="col-12 col-md-12 col-lg-12 weekChampion">
+                        <div class="row">
+                            <div class="col-auto col-md-3 col-lg-3 imageChampion">
+                                <img src="@ImagesSevice.GetProfileImageUrl(Model.TopWeekAccount.image)" alt="userImage" usemap="true" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                                <i class="goodjob"></i>
+                            </div>
+                            <div class="col col-md-9 col-lg-9">
+                                <p class="hashtag d-block d-md-block d-lg-none">#شجع معنا البطل</p>
+                                <p class="Name">@(Model.TopWeekAccount.name)</p>
+                                <p class="activity"><span>@Model.TopWeekAccount.weekStepsCount</span> خطوة __ نشط على مدار <span>7</span> أيام</p>
+                                <a class="sharePost" onclick="ShareWeekUserAsPost()">شاركه كمنشور</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 groupMembers px-0">
+                        <h3>الأعضاء</h3>
+                        <div class="membersImgs">
+                            @if (Model.TopFiveAccounts.Count() > 0)
+                            {
+                                foreach (var item in Model.TopFiveAccounts)
+                                {
+                                    <div class="memberImg-wrapper">
+                                        <img id="image" alt="pic" src="@ImagesSevice.GetProfileImageUrl(item.image)" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'" onclick="window.location.href = '/groupUsers/UserProfile?accountid=@item.id&groupId=@Model.group.id'">
+                                        <p>@item.name </p>
+                                    </div>
+                                }
+                            }
+                            <div class="allMembs-wrapper">
+                                <a class="allMembers" href="/Groupusers/members?page=1&groupId=@Model.group.id">
+                                    الكل
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-1 longAd d-none d-md-none d-lg-flex align-items-center">
+                <img src="/content/frontend/imgs/longAd.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<img src="~/content/frontend/imgs/longAd.png">*@
+<!--</div>
+        </div>
+    </div>
+</div>-->
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        SelectActivateMenuItem('statistics');
+        $('.stepsLoader').show();
+        var id = '@Model.group.id';
+        $.post("/Groups/GetGroupSteps?id=" + id, function (result) {
+            $('.graphHeader').append(result);
+        $('.stepsLoader').hide();
+    });
+    });
+        function ShareWeekUserAsPost() {
+            if (confirm("هل تريد مشاركته كمنشور فى المجموعة ؟")) {
+             var user = '@Model.TopWeekAccount.name';
+            var steps = '@Model.TopWeekAccount.weekStepsCount';
+              $.post('/Groups/ShareWeekUserAsPost', { user: user, steps: steps, groupId: '@Model.group.id' }, function (res) {
+               if (res == true) {
+                alert('تم النشر بنجاح')
+               } else {
+                   alert('حدث خطأ')
+               }
+        })
+            }
+
+        }
+
+        $(document).on('click', '.distanceTab', function () {
+            $('.averageStepsDistance').html('@Model.averageWeekDistance.FormattedNumber()');
+            $('.currentNumber').html('@Model.totalWeekDistance.FormattedNumber()');
+        });
+        $(document).on('click', '.stepsTab', function () {
+            $('.averageStepsDistance').html('@Model.averageWeekSteps.FormattedNumber()');
+            $('.currentNumber').html('@Model.totalWeekSteps.FormattedNumber()');
+        });
+
+$('.timingTab a').click(function () {
+    $('.timingTab li').removeClass("active");
+    $(this).parent('li').addClass("active");
+});
+$('.typesTab a').click(function () {
+    $('.typesTab li').removeClass("active");
+    $(this).parent('li').addClass("active");
+});
+    </script>
+}
+

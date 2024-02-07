@@ -1,0 +1,150 @@
+$(document).ready(function(){
+    /* change parent color when input checked */
+    $(".radio-wrapper .radioDiv input[type=radio]").change(function() {
+        if(this.checked) {
+            //Do stuff
+            /* alert($(this).attr("id"));*/
+            $(".radio-wrapper input[type=radio]").parent().removeClass("active");
+            $(this).parent().addClass("active");
+        }
+    });
+
+    /* change parent color when input checked */
+    $(".radio-wrapper .groupRadio input[type=radio]").change(function() {
+        if(this.checked) {
+            //Do stuff
+            /*alert($(this).attr("id"));*/
+            $(".radio-wrapper input[type=radio]").parent().parent().removeClass("active");
+            $(this).parent().parent().addClass("active");
+        }
+    });
+
+    $(".groupOptions").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parent().find(".optionPopup").toggle('show');
+    })
+
+
+
+    $(".orderDropdown input[type='radio']").change(function(){
+
+        var checkedText = $(this).parent().find("a").html();
+        var buttonOrder = $(this).parent().parent().parent().find(".orderButton");
+        $(buttonOrder).html(checkedText);
+    });
+    /* append new comment and reply input field */
+    $(".addComment").click(function (){
+       var inputText = $(this).parent().find("input");
+        if(inputText.val()!== ""){
+       var div = " <div class=\"col-12 postComment\">" + " <div class=\"row justify-content-end\">" + "<div class=\"col-12 col-md-12 col-lg-12 comment\">" +"<div class=\"row\">"+ "<div class=\"col-auto userDp\">" + "<img src=\"imgs/group.jpg\">" +
+           " </div>" + "<div class=\"col userInfo\">" + "<div class=\"d-flex align-items-center\">" + "<p class=\"userPosted\">محمد حسن احمد</p>" +
+           " </div>" + "<p class=\"postDate\"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>" + " <p>" + inputText.val() + "</p>" +
+           "<div class=\"socialInfo\">" + "  <p> 0 <i class=\"comments\"></i></p>" + "<p> 0 <i class=\"likes\"></i></p>" +
+           " <p> 0 <i class=\"share\"></i></p>" + "</div>" + " </div>" + "</div>" + "</div>"+ "<div class=\"col-11 replies pr-0\">" +
+           "<div class=\"row\">" + " <div class=\"repliesWrapper\"> </div>" + " <div class=\"input-wrapper replyInput\">" +
+           "<input type=\"text\" class=\"form-control\" placeholder=\"اضف الرد هنا\">" + "<img src=\"imgs/userDefault.png\" class=\"addCommentDp\">" +
+           "<a href=\"javascript:void(0)\" class=\"addReply\"></a>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>" ;
+           $(this).parent().parent().find(".commentsWrapper").append(div);
+            inputText.val("");
+        }
+    });
+    /* append new reply **/
+    $(document).on("click",".addReply" ,function (){
+        var inputText = $(this).parent().find("input");
+        if(inputText.val()!== ""){
+            var div = " <div class=\"col-12 reply\">" + "<div class=\"row\">" + "<div class=\"col-auto userDp\">" + "<img src=\"imgs/group.jpg\">" + "</div>" +
+                "<div class=\"col userInfo\">" + " <div class=\"d-flex align-items-center\">" + " <p class=\"userPosted\">محمد حسن احمد</p>" + "</div>" +
+                "<p class=\"postDate\"><i></i>  <span>تاريخ النشر</span> 20/5/2022</p>" + "<p>" + inputText.val() + "</p>" + "<div class=\"socialInfo\">" +
+                "<p> 0 <i class=\"comments\"></i></p>" + "<p> 0 <i class=\"likes\"></i></p>" + "<p> 0 <i class=\"share\"></i></p>"+ " </div>" + " </div>"
+                + " </div>" + " </div>";
+            $(this).parent().parent().parent().find(".repliesWrapper").append(div);
+            inputText.val("");
+        }
+
+    });
+
+    $('#postImg').on('change', function () {
+        myfile = $(this).val();
+        var ext = myfile.split('.').pop();
+        if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+            loadFile(this);
+        } else {
+            $(this).val('');
+            alert("file is not image");
+        }
+    });
+    $('#coverImg, #dpImg, #userImg').on('change', function () {
+        myfile = $(this).val();
+        var ext = myfile.split('.').pop();
+        if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+            changeImg(this);
+        } else {
+            $(this).val('');
+            alert("file is not image");
+        }
+    });
+
+    $( ".postImgs" ).on( "click", ".clearImg", function () {
+       $(this).parent().remove();
+    });
+
+    /* display inner menu for active group */
+  var activeGroup =  $(".sideList .dropdown-item.active");
+  $(activeGroup).parent().find(".activeGroup").show();
+
+  /* get selected admins and append them to div */
+
+  $(".acceptAdmin").click(function (){
+      $('input[name="adminMember"]:checked').each(function() {
+        var val =  $(this).val();
+        var div = "<a>" + "<i onclick=\"removeAdmin(this)\"></i>" + val + "</a>";
+        $(".adminNames").append(div);
+      })
+      $('.chooseAdminPopUp').modal('hide');
+  });
+  $(".textarea-wrapper textarea").keyup(function (){
+      let value = $(this).val();
+      if(value !== ""){
+
+          $(document).find(".addSharePost").addClass("addActive");
+      }
+      else {
+          $(document).find(".addSharePost").removeClass("addActive");
+      }
+  })
+
+})
+
+function openNav() {
+    //debugger
+    /* open navbar in mobile */
+    $("#overlayBg").fadeIn();
+    document.getElementById("myNav").style.width = "80%";
+}
+function removeAdmin(item) {
+    $(item).parent().remove();
+}
+function openFileUpload(item,e) {
+    /*document.getElementById("postImg").click();*/
+    e.preventDefault();
+    $(item).parent().find("input[type='file']").click();
+}
+
+function loadFile (uploader) {
+    if (uploader.files && uploader.files[0]) {
+        var src = window.URL.createObjectURL(uploader.files[0]);
+        var div = "<div class=\"attachedImg\">" + "<img src= " + src + ">" + " <div class=\"imgOverlay clearImg\">" + "</div>" + " </div>";
+        $(".postImgs").append(div);
+    }
+}
+function closeNav() {
+    $("#overlayBg").fadeOut();
+    document.getElementById("myNav").style.width="0%";
+}
+function changeImg(uploader) {
+    if (uploader.files && uploader.files[0]) {
+        let src = window.URL.createObjectURL(uploader.files[0]);
+        $(uploader).parent().parent().find("img").attr("src", src);
+    }
+}

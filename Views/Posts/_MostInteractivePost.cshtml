@@ -1,0 +1,183 @@
+﻿@using  X.PagedList;
+@model IPagedList<RashakaGroupsAdmin.Models.GroupPost>
+@using RashakaGroupsAdmin.Services;
+
+<h2>اكثر المنشورات تفاعلا</h2>
+@foreach (var item in Model)
+{
+    var postImage = !string.IsNullOrEmpty(item.shareImageUrl) ? item.shareImageUrl : item.image;
+
+    var description = item.description.Length >= 100 ? item.description.Substring(0, 99) : item.description;
+    <div class="col-12 post">
+        <div class="row align-items-start">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-auto userDp">
+                        <img class="userCommentImg" src="@ImagesSevice.GetProfileImageUrl(item.account.image)">
+                    </div>
+                    <div class="col userInfo">
+                        <div class="d-flex align-items-center" onclick="window.location.href='/posts/Details/@item.id'" style="cursor:pointer">
+                            <p class="userPosted"> تم النشر بواسطة <span>@item.account.name </span></p>
+                        </div>
+                        <p class="postDate"><i></i>  <span>تاريخ النشر</span> @item.date.FormattedDate()</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="row align-items-center">
+                    <div class="col postText d-flex align-items-center flex-wrap" onclick="window.location.href='/posts/Details/@item.id'">                        
+                            <p>@description</p>                        
+                    </div>
+                    <div class="col-auto postImage d-flex align-items-center">
+                        @if (!string.IsNullOrEmpty(postImage))
+                        {
+                            <img style="cursor:pointer" class="userPostImg" src="@ImagesSevice.GetPostImageUrl(postImage)" onclick="window.location.href='/posts/Details/@item.id'">
+                        }
+                        @*<img src="https://api.rashaqa.net/Images/groups/posts/@item.image">*@
+                    </div>
+                </div>
+                <div class="socialInfo d-flex justify-content-between">
+                    <p onclick="window.location.href='/posts/Details/@item.id'"> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                    <p> @item.totalLikes <i class="likes"></i></p>
+                    <p> @item.shareCount <i class="share"></i></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="input-wrapper">
+            <input type="hidden" class="postId" value="@item.id">
+            <input type="text" class="form-control commentText" placeholder="اضف تعليقك هنا">
+            <img src="@ViewBag.userProfileImage" class="addCommentDp" >
+            <a  class="addComment"></a>
+
+        </div>
+        <div class="commentsWrapper" id="grid2">
+        </div>
+    </div>
+
+
+}
+
+
+
+
+
+@*<h2>اكثر المنشورات تفاعلا</h2>
+@foreach (var item in Model)
+{
+    <div class="col-12 post">
+        <div class="row align-items-start">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-auto userDp">
+                        <img src="@ImagesSevice.GetProfileImageUrl(item.account.image)">
+                    </div>
+                    <div class="col userInfo">
+                        <div class="d-flex align-items-center">
+                            <p class="userPosted"> تم النشر بواسطة <span>@item.account.name </span></p>
+                        </div>
+                        <p class="postDate"><i></i>  <span>تاريخ النشر</span> @item.date.Value.ToString("dd-MM-yyyy")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="row align-items-center">
+                    <div class="col postText d-flex align-items-center flex-wrap" onclick="window.location.href='/posts/Details/@item.id'">
+
+                        @if (item.description.Length >= 100)
+                        {
+                            <p>@item.description.Substring(0, 99)</p>
+                        }
+                        else
+                        {
+                            <p>@item.description</p>
+                        }
+                    </div>
+
+
+                    <div class="col-auto postImage d-flex align-items-center">
+                        <img src="https://api.rashaqa.net/Images/groups/posts/@item.image">
+                    </div>
+                </div>
+                <div class="socialInfo d-flex justify-content-between">
+                    <p onclick="window.location.href='/posts/Details/@item.id'"> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                    <p> @item.totalLikes <i class="likes"></i></p>
+                    <p> @item.shareCount <i class="share"></i></p>
+                </div>
+            </div>
+        </div>
+        <div class="input-wrapper">
+
+            <input type="hidden" class="form-control postId" value="@item.id">
+            <input type="text" class="form-control commentText" placeholder="اضف تعليقك هنا">
+            <img src="@ViewBag.userProfileImage" class="addCommentDp" crossorigin="anonymous">
+            <a href="#" class="addComment"></a>
+        </div>
+        <div class="commentsWrapper">
+        </div>
+    </div>
+}*@
+
+
+
+
+@*<div class="postDetails">
+        <h2>اكثر المنشورات تفاعلا</h2>
+
+        @foreach (var item in Model)
+        {
+            <div class="col-12 post">
+                <div class="row align-items-start">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-auto userDp">
+                                <img src="@ImagesSevice.GetProfileImageUrl(item.account.image)">
+                            </div>
+                            <div class="col userInfo">
+                                <div class="d-flex align-items-center">
+                                    <p class="userPosted"> تم النشر بواسطة <span>@item.account.name </span></p>
+                                </div>
+                                <p class="postDate"><i></i>  <span>تاريخ النشر</span> @item.date.Value.ToString("dd-MM-yyyy")</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="row align-items-center">
+                            <div class="col postText d-flex align-items-center flex-wrap" onclick="window.location.href='/posts/Details/@item.id'">
+
+                                @if (item.description.Length >= 100)
+                                {
+                                    <p>@item.description.Substring(0, 99)</p>
+                                }
+                                else
+                                {
+                                    <p>@item.description</p>
+                                }
+                            </div>
+                            <div class="col-auto postImage d-flex align-items-center">
+                                <img src="@ImagesSevice.GetPostImageUrl(item.image)" alt="لا توجد صوره">
+                            </div>
+                        </div>
+                        <div class="socialInfo d-flex justify-content-between">
+                            <p onclick="window.location.href='/posts/Details/@item.id'"> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                            <p> @item.totalLikes <i class="likes"></i></p>
+                            <p> @item.shareCount <i class="share"></i></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-wrapper">
+                    <input type="hidden" class="form-control postId" value="@item.id">
+                    <input type="text" class="form-control commentText" placeholder="اضف تعليقك هنا">
+                    <img src="@ViewBag.userProfileImage" class="addCommentDp">
+                    <a href="#" class="addComment"></a>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+    <div class="col-12 morePosts">
+        <a href="/posts/GroupPosts?page=1&groupId=@Model.Select(x=>x.groupId).FirstOrDefault()">المزيد</a>
+    </div>*@

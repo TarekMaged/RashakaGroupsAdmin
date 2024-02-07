@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RashakaGroupsAdmin.Models.Group>
+
+
+    @foreach (var item in Model)
+    {
+        var groupType = item.typeId == 1 ? "رجال" : item.typeId == 2 ? "نساء" : "عامة";
+        <div class="col-6 col-md-6 col-lg-4 group-card">
+            <div class="card" onclick="window.location.href='/groups/Details/@item.id'">
+
+                <div class="row no-gutters">
+                    <div class="row no-gutters w-100 align-items-center">
+                        <div class="col-12 col-md-12 col-lg-auto image-wrapper">
+                            <img class="groupUserImg" src="https://api.rashaqa.net/Images/groups/@item.image">
+                            <i class="privateGroup"></i>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg text-wrapper">
+                            <div class="inner-header d-flex">
+                                <h2>@item.name</h2>
+                                <div class="groupOptions-wrapper">
+                                    <a class="groupOptions d-none d-md-none d-lg-block"></a>
+                                    <div class="optionPopup">
+                                        <a class="deleteGroup" data-toggle="modal" data-target="#deletePostModal"> <i></i> مسح المجموعة</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="date"> <i></i>تاريخ الأنشاء <span>@item.date.Value.ToString("dd/MM/yyyy")</span></p>
+
+                        </div>
+                    </div>
+                    <div class="col-12 cardFooter">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-5 col-md-5 col-lg-4 groupType order-3">
+                                <i></i>
+                                مجموعة @groupType
+                            </div>
+                            <div class="col-7 d-flex d-md-block d-lg-none groupOptions-wrapper order-last">
+                                <a class="groupOptions"></a>
+                                <div class="optionPopup">
+                                    @*<a class="deleteGroup"> <i></i> مسح المجموعة</a>*@
+                                    <a class="deleteGroup" data-toggle="modal" data-target="#deleteGroupModal" onclick="SetGroupIdToDelete('@item.id')"> <i></i> حذف المجموعة</a>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-8 order-1 order-first order-lg-last">
+                                <div class="members">
+                                    @foreach (var img in RashakaGroupsAdmin.Services.GroupsService.GetGroupUsersImages(item.id))
+                                    {
+                                        <img id="image" src="@img" class="groupMemberImg" alt="">
+                                    }
+                                    <div class="count">
+                                        +  @item.acceptedMembersCount
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+

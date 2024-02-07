@@ -1,0 +1,55 @@
+﻿@model RashakaGroupsAdmin.ViewModel.GetReplies
+@if (Model.replies.Count > 0)
+{
+    @*<input type="hidden" value="@Model.accountGuid" id="accountGuid" />*@
+    <div class="input-wrapper replyInput">
+        <input type="hidden" value="@Model.commentGuid" class="commentGuid"/>
+        <input type="text" class="form-control replyText" placeholder="اضف الرد هنا">
+        <img src="~/content/frontend/imgs/userDefault.png" class="addCommentDp">
+        <a href="javascript:void(0)" class="addReply" id="addReply"></a>
+    </div>
+    foreach (var item in Model.replies)
+    {
+        <div class="row" id="reply_@item.guid">
+            <div class="repliesWrapper">
+                <div class="col-12 reply">
+                    <div class="row">
+                        <div class="col-auto userDp">
+                            <img class="userCommentImg" src="@item.image">
+                        </div>
+                        <div class="col userInfo">
+                            <div class="d-flex align-items-center">
+                                <p class="userPosted">@item.userName</p>
+                            </div>
+                            <p class="postDate"><i></i>  <span>تاريخ النشر</span> @item.date</p>
+                            <p>@item.text</p>
+                            <div class="socialInfo">
+                                @*<p>0 <i class="comments"></i></p>*@
+                                @*<p>  <i class="comments" onclick="GetReplies(1,'@item.guid', '@item.accountGuid')"></i></p>*@
+
+                                <p> @item.likeCount <i class="likes"></i></p>
+                                <p> 0 <i class="share"></i></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+}
+else
+{
+    <div class="row">
+        <div class="input-wrapper replyInput">
+            <input type="hidden" value="@Model.commentGuid" class="commentGuid" />
+            <input type="text" class="form-control replyText" placeholder="اضف الرد هنا">
+            <img src="~/content/frontend/imgs/userDefault.png" class="addCommentDp">
+            <a href="javascript:void(0)" class="addReply"></a>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,72 @@
+{
+  "foodSystems": [
+    {
+      "id": 1,
+      "name": "ريجيم قليل الفودماب",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 0
+    },
+    {
+      "id": 2,
+      "name": "كيتو",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 2
+    },
+    {
+      "id": 3,
+      "name": "داش",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 2
+    },
+    {
+      "id": 4,
+      "name": "الصيام المتقطع",
+      "mainMealsCount": 2,
+      "snaksMealsCount": 1
+    },
+    {
+      "id": 5,
+      "name": "صيام متقطع مع حساب GI",
+      "mainMealsCount": 2,
+      "snaksMealsCount": 1
+    },
+    {
+      "id": 6,
+      "name": "ريجيم عالي البروتين",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 2
+    },
+    {
+      "id": 7,
+      "name": "ريجيم الهاشيموتو",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 0
+    },
+    {
+      "id": 9,
+      "name": "كارنيفور (كارب ودهون صحية)",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 0
+    },
+    {
+      "id": 10,
+      "name": "البحر الأبيض المتوسط",
+      "mainMealsCount": 3,
+      "snaksMealsCount": 2
+    },
+    {
+      "id": 12,
+      "name": "متعدد الأسماك",
+      "mainMealsCount": 0,
+      "snaksMealsCount": 0
+    },
+    {
+      "id": 13,
+      "name": "المؤشر الجلاسيمي",
+      "mainMealsCount": 0,
+      "snaksMealsCount": 0
+    }
+  ],
+  "Status": "Success",
+  "Message": ""
+}

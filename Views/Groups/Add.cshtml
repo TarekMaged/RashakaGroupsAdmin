@@ -1,0 +1,288 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int privacyId = 1;
+    int typeId = 1;
+}
+@using (Html.BeginForm("AddGroup", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-12 col-md-12 col-lg-10 addGroup-wrapper">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-9">
+                <h1 class="addGroupHeader d-none d-md-none d-lg-block">اضف مجموعة جديدة</h1>
+                <div class="groupCover">
+                    <img src="~/Content/FrontEnd/imgs/groupHeaderNew.png" id="imgCoverSourceImage">
+                    <label for="coverImg" class="d-inline-flex d-md-inline-flex d-lg-flex mr-auto">
+                        <input type="file" name="coverImage" id="coverImg" accept="image/jpeg ,image/png,image/bmp">
+                        <a class="changeCover" href="#" onclick="selectCoverImage(this,event)">تغيير الصورة <i></i></a>
+                    </label>
+                    <div class="groupDp">
+                        <img src="~/Content/FrontEnd/imgs/defaultGroupNew.png" id="imgProfileSourceImage">
+                        <label for="dpImg" class="d-inline-flex d-md-inline-flex d-lg-flex mr-auto">
+                            <input type="file" name="image" id="dpImg" accept="image/jpeg ,image/png,image/bmp">
+                            <i class="changeDp" onclick="selectProfileImage(this,event)"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-11 addgroup-wrapper">
+                    <div class="form-group">
+                        <label for="groupName">اسم المجموعة</label>
+                        <input type="text" class="form-control" id="groupName" name="name" minlength="3" maxlength="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupDesc">وصف المجموعة</label>
+                        <textarea type="text" class="form-control" id="groupDesc" name="description"></textarea>
+                    </div>
+                    <div class="form-group col-12 col-md-12 col-lg-8 groupType-wrapper">
+                        <label>نوع المجموعة</label>
+                        <div class="radio-wrapper">
+                            <div class="row">
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv">
+                                        <input type="radio" name="typeId" id="men" value="1">
+                                        <span class="checkmark"></span>
+                                        <label for="men">رجــال</label>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv">
+                                        <input type="radio" name="typeId" id="women" value="2">
+                                        <span class="checkmark"></span>
+                                        <label for="women">نساء</label>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4 col-lg-3">
+                                    <div class="radioDiv">
+                                        <input type="radio" name="typeId" id="all" value="3">
+                                        <span class="checkmark"></span>
+                                        <label for="all">عامة</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-md-12 col-lg-8 groupPrivacy-wrapper">
+                        <label>خصوصية المجموعة</label>
+                        <div class="radio-wrapper">
+                            <div class="row">
+                                <div class="col-6 col-md-6 col-lg-6 radioCard">
+                                    <div class="groupRadio">
+                                        <label for="public">
+                                            <input type="radio" name="privacyId" id="public" value="1">
+                                            <span class="checkmark" ></span>
+                                            مفتوحة
+                                        </label>
+
+                                        <p>يتم الأنضمام إليك بدون موافقة</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6 radioCard">
+                                    <div class="groupRadio">
+                                        <label for="private">
+                                            <input type="radio" name="privacy" id="private" value="2">
+                                            <span class="checkmark"></span>
+                                            مغلقة
+                                        </label>
+                                        <p>  لا يمكن الأنضمام لها الا بموافقة المالك</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-12 col-md-12 col-lg-3 d-none d-md-none d-lg-block ads-wrapper">
+                <div class="col-12 col-md-12 col-lg-12 longAd ">
+                    <img src="~/Content/FrontEnd/imgs/longAd.png">
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 shortAd">
+                    <img src="~/Content/FrontEnd/imgs/shortAd.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="addGroup" onclick="return validate()">انشئ المجموعة</button>
+}
+<div class="modal fade groupValidationModal" id="groupValidationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <input type="hidden" value="" id="pinnedPostId" />
+        <input type="hidden" value="" id="pinnedGroupId" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title d-none d-md-none d-lg-block" id="exampleModalLabel">من فضلك أدخل البيانات الغير مكتملة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                    <div class="pinPostBg">
+                    </div>
+                    <p>سيتم تثبيت هذا المنشور اعلى الشاشة ليكسب اهتمام جميع المشاركين والوصول لأكبر رقم من المستخدمين</p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="acceptPin" id="PinPost"> تأكيد التثبيت</button>
+                <button type="button" class="declinePin" data-dismiss="modal"> إلغاء </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function selectCoverImage(item, e) {
+            e.preventDefault();
+            $("#coverImg").click();
+        }
+        function selectProfileImage(item, e) {
+            e.preventDefault();
+            $("#dpImg").click();
+        }
+        //function getImage(imagename, id) {
+        //   //var newimg = imagename.replace(/^.*\\/, "");
+        //  uploadImage()
+        // }
+        //function openFileOption2() {
+        //    document.getElementById("profileImage").click();
+        //    uploadImage('profileImage', 'profileImageSource');
+        //}
+
+        //function openFileOption() {
+        //    document.getElementById("coverImage").click();
+        //    uploadImage('coverImage','coverImageSource' );
+        //}
+        function validate() {
+          debugger
+            var imageExists = true;
+            var nameExists = false;
+            //var coverImage = document.getElementById("coverImg").files[0];
+            //var image = document.getElementById("dpImg").files[0];
+            //if (coverImage.length > 0&& image.length>0) {
+            //    imageExists = true;
+            //}
+           
+            var privacyId=$('.privacyId:checked').val();
+            var typeId = $('.groupType:checked').val();
+            if (privacyId == null || privacyId == 'undefined' ) {
+                $(".radioCard").css('border-color', 'red');
+            }
+            if (typeId == null || typeId == 'undefined') {
+                $(".radioDiv").css('border-color', 'red');
+            }
+          
+            if ($("#groupName").val().trim().length == 0) {
+                $("#groupName").css('border-color', 'red');
+                nameExists = false;
+            } else {
+                $("#groupName").css('border-color', '');
+                nameExists=true
+            }
+            return nameExists;
+        }
+       
+        //$('.privacyId').change(function () {
+        //    var privacyId = $(this).val();
+        //    alert(privacyId)
+        //    $('#privacyId').val(privacyId);
+        //});
+        //$('.groupType').change(function () {
+        //    var typeId = $(this).val();
+        //    alert(typeId)
+        //    $('#typeId').val(typeId);
+        //});
+
+        var coverImage = document.getElementById("coverImg").files[0];
+        var image = document.getElementById("dpImg").files[0];
+        $('.addGroup22').click(function () {
+            //  alert($('.groupPrivacy:checked').val());
+            debugger
+            var formData = new FormData();
+            formData.append("name", $('#groupName').val());
+            formData.append("description", $('#groupDesc').val());
+            formData.append("privacyId", $('.privacyId:checked').val());
+            formData.append("typeId", $('.groupType:checked').val());
+
+            formData.append("coverImage", coverImage);
+
+            formData.append("image", image);
+
+            $.ajax({
+                url: "/Groups/AddGroup",
+                data: formData,
+                type: "Post",
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (result) {
+                    if (result == true) {
+                        window.location.href = "/home/index";
+                    } else {
+                        alert('حدث خطأ حاول مره اخرى')
+                    }
+                },
+                error: function (e) {
+                    alert(e);
+                    if (e.status == "401") {
+                        alert('401');
+                    }
+                    else {
+                        alert('33');
+                    }
+                }
+            });
+        });
+
+
+
+        function uploadImage(id, sourceId) {
+            debugger
+            coverImage = document.getElementById("coverImage").files[0];
+            image = document.getElementById("profileImage").files[0];
+            //Get reference of FileUpload.
+            var fileUpload = document.getElementById(id);
+            //Check whether the file is valid Image.
+            var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.jpg|.png|.gif)$");
+            if (regex.test(fileUpload.value.toLowerCase())) {
+
+                //Check whether HTML5 is supported.
+                if (typeof (fileUpload.files) != "undefined") {
+                    //Initiate the FileReader object.
+                    var reader = new FileReader();
+                    //Read the contents of Image File.
+                    reader.readAsDataURL(fileUpload.files[0]);
+                    reader.onload = function (e) {
+                        //Initiate the JavaScript Image object.
+                        var image = new Image();
+
+                        //Set the Base64 string return from FileReader as source.
+                        image.src = e.target.result;
+                        //$('#imageDiv').show();
+                        //Validate the File Height and Width.
+                        image.onload = function () {
+                            var height = this.height;
+                            var width = this.width;
+                            $('#' + sourceId).attr('src', e.target.result);
+                            /*    $('#imagemsg').html("");*/
+                            return true;
+                        };
+                    }
+                } else {
+
+                    $('#imagemsg').html("المتصفح لايدعم");
+                    return false;
+                }
+            } else {
+                $('#imagemsg').html("من فضلك اختر صوره مناسبه");
+                return false;
+            }
+        }
+
+    </script>
+}

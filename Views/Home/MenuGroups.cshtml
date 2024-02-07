@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RashakaGroupsAdmin.Models.Group>
+@{ 
+    int index = 1;
+}
+@foreach (var item in Model)
+{
+    <div class="navItem-wrapper">
+        <a class="dropdown-item menuGroups"  href="/Groups/details/@item.id" id="menuItem@(item.id)" >
+            <img src="https://api.rashaqa.net/Images/groups/@item.image" class="groupImg">
+            @item.name
+        </a>
+        <div class="activeGroup" id="activeGroup@(item.id)">
+            <ul>
+                <li>
+                    <a href="/Groupusers/members?groupId=@item.id" class="members"><i></i>أعضاء</a>
+                </li>
+                <li>
+                    <a href="/Groups/details?id=@item.id" class="statistics"> <i></i>إحصائات</a>
+                </li>
+                <li>
+                    <a href="/posts/GroupPosts?groupId=@item.id" class="groupPosts"><i></i>منشورات</a>
+                </li>
+                @*<li>
+                    <a href="/posts/GroupPosts?groupId=@item.id" class="products"><i></i>المنتجات</a>
+                </li>*@
+                <li>
+                    <a href="/Groups/reporting/@item.id" class="groupReports"><i></i> إبلاغات</a>
+                </li>
+                <li class="active">
+                    <a href="/Groups/Settings/@item.id" class="settings"><i></i>إعدادت</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    index++;
+}
+
+

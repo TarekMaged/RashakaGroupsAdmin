@@ -1,0 +1,230 @@
+﻿@model IEnumerable<RashakaGroupsAdmin.ViewModel.GroupPostsModel>
+@using RashakaGroupsAdmin.Services;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    string agent = HttpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string[] data = User.Identity.Name.Split('|');
+    var accountId = data[0];
+}
+@Html.Partial("_HorizontalMenu")
+<div class="col-12 col-md-12 col-lg-11 posts-wrapper" style="-webkit-overflow-scrolling: touch;overflow-y: scroll;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="postsCount">  عدد المنشورات<span>@Model.Count()</span></th>
+                <th scope="col">تم النشر بواسطة</th>
+                <th scope="col">تاريخ النشر</th>
+                <th scope="col">
+                    <div class="orderBy-wrapper mr-auto d-flex align-items-center justify-content-end">
+                        <label for="order" class="orderLabel d-none d-md-none d-lg-inline-block"> <i class="filter"></i> فلتر حسب</label>
+                        <div class="dropdown orderDropdown">
+                            <button class="btn dropdown-toggle orderButton" type="button" id="order" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                الكل
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <label class="dropdown-item active" onclick="GetPosts('all', 1)" style="color: #16181b !important">
+                                    <input type="radio" name="subcategory"><span class="checkmark"></span> <a> الأحدث</a>
+                                </label>
+                                <label class="dropdown-item" onclick="GetPosts('comments', 1)">
+                                    <input type="radio" name="subcategory"><span class="checkmark"></span> <a> الاكثر تعليقا</a>
+                                </label>
+                                <label class="dropdown-item" onclick="GetPosts('likes', 1)">
+                                    <input type="radio" name="subcategory"><span class="checkmark"></span> <a> الأكثر إعجابا</a>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="grid">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    var publisherImage = ImagesSevice.GetProfileImageUrl(item.profileImage);
+                    var title = !string.IsNullOrWhiteSpace(item.description) ? item.description : !string.IsNullOrWhiteSpace(item.title.Trim()) ? item.title : "منشور";
+                    <tr class="@(item.isUnderRevision==true?"inReviewCard":"" )">
+                        <td class="order-4">
+                            <a href="/posts/Details?id=@item.id&accountId=@accountId">@title</a>
+                            @if (!string.IsNullOrWhiteSpace(item.image))
+                            {
+                                <img onclick="window.location.href='/posts/Details?id=@item.id&accountId=@accountId'" class="postRespImg" src="https://api.rashaqa.net/Images/groups/posts/@item.image" @*src="@ImagesSevice.GetPostImageUrl(item)"*@>
+                            }
+                        </td>
+                        <td class="order-first">
+                            <a class="postedBy" href="/groupUsers/UserProfile?accountid=@item.accountId&groupId=@ViewBag.groupId">
+                                <img src="@publisherImage" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">  @item.name
+                            </a>
+                            <div class="col-12 d-block d-md-block d-lg-none respUser">
+                                <div class="row">
+                                    <div class="col-3 px-0 userImg">
+                                        <img class="respUserImg d-inline-block d-lg-none" src="@publisherImage" onerror="this.onerror=null;this.src='/content/frontend/imgs/userDefault.png'">
+                                    </div>
+                                    <div class="col-9 info-wrapper">
+                                        <p class="userName">@item.name</p>
+                                        <p class="calender"><i></i><span>تاريخ النشر</span> @item.date.FormattedDate()</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td class="order-3"><p class="calender"> <i></i>@item.date.FormattedDate()</p> </td>
+                        @if (agent == "mobile")
+                        {
+                            <td class="order-last d-lg-none pt-0 socialResp" onclick="window.location.href='/posts/Details?id=@item.id&accountId=@accountId'">
+                                <div class="socialInfo">
+                                    <p> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                                    <p> @item.totalLikes <i class="likes"></i></p>
+                                    <p> @item.shareCount <i class="share"></i></p>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="order-2">
+                                <div class="d-flex justify-content-end">
+                                    <div class="socialInfo d-none d-md-none d-lg-block" onclick="window.location.href='/posts/Details?id=@item.id&accountId=@accountId'">
+                                        <p> @item.commentSystemCommentsCount <i class="comments"></i></p>
+                                        <p> @item.totalLikes <i class="likes"></i></p>
+                                        <p> @item.shareCount <i class="share"></i></p>
+                                    </div>
+                                    @if (item.isUnderRevision == true)
+                                    {
+                                        <a class="inReview removeUnderLine">متوقف للمراجعه</a>
+                                    }
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            <template id="postTemplate">
+                <tr class="skeletonRow">
+                    <td class="order-4">
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="postRespImg skeleton" src="~/content/frontend/imgs/shortAd.png"></div>
+                    </td>
+                    <!--  <td class="d-none d-lg-block"><a href="#" class="notfBell"></a></td> -->
+                    <td class="order-first">
+                        <div class="postedBy skeleton"></div>
+                        <div class="col-12 d-block d-md-block d-lg-none respUser">
+                            <div class="row">
+                                <div class="col-3 px-0 userImg">
+                                    <img class="respUserImg d-inline-block d-lg-none" src="~/content/frontend/imgs/userDefault.png">
+                                </div>
+                                <div class="col-9 info-wrapper">
+                                    <div class="skeleton skeleton-text"></div>
+                                    <div class="skeleton skeleton-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="order-3"> <div class="skeleton skeleton-text"></div></td>
+                    <td class="order-last d-lg-none pt-0 socialResp">
+                        <div class="socialInfo">
+                            <p> 12 <i class="comments"></i></p>
+                            <p> 20 <i class="likes"></i></p>
+                            <p> 20 <i class="share"></i></p>
+                        </div>
+                    </td>
+                    <td class="order-2">
+                        <div class="d-flex justify-content-end">
+                            <div class="skeleton skeleton-text"></div>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+        $("#groupId2").addClass("active"); /* add active to selected groupId only */
+
+        /* skeleton loading */
+        const grid = document.querySelector('#grid')
+        const cardTemplate = document.getElementById('postTemplate')
+        function LoadSkeleton() {
+            for (let i = 0; i < 15; i++) {
+                grid.prepend(cardTemplate.content.cloneNode(true));
+            }
+            return true;
+        }
+        var filter = "";
+        var page = 1;
+        // filter = "all";
+        var lastPageLoaded = false;
+        $(document).ready(function () {
+            SelectActivateMenuItem('groupPosts');
+            $('.horizontalBar li').removeClass("active");
+            $('.postsTopMenu').addClass("active");
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + 1 >= $(document).height() - $(window).height()) {
+                    if (lastPageLoaded == false) {
+                        page++;
+                        GetPosts(filter, page);
+                    }
+                }
+            });
+        });
+        $(document).on('touchmove', function (event) {
+            event.preventDefault();
+            if ($('body').scrollTop() + 1 >= $('body').height() - $('body').height()) {
+                if (lastPageLoaded == false) {
+                    page++;
+                    GetPosts(filter, page);
+                }
+            }
+        });
+
+
+        function GetPosts(_filter, page) {
+            //var date = $("#CommentsList tbody tr:last").find('#lastdate').val()
+            for (let i = 0; i < 15; i++) {
+                grid.append(cardTemplate.content.cloneNode(true))
+            }
+            filter = _filter;
+            $.ajax({
+                type: "Post",
+                url: '/posts/GetUserPosts',
+                data: {
+                    groupId: '@ViewBag.groupId',
+                    accountId: '@ViewBag.accountId'
+                     page: page,
+                    filter: filter
+                },
+                success: function (result) {
+                    //page++;
+                    $('.skeletonRow').remove();
+
+                    if (result.length > 0) {
+                        // alert("length " + result.length)
+                        if (page == 1) {
+                            // alert('1')
+                            $('#grid').empty();
+                            $('#grid').html(result);
+                        } else {
+                            // alert('2')
+                            $('#grid').append(result);
+                        }
+                    } else {
+                        // alert('end')
+                        lastPageLoaded = true;
+                    }
+                },
+                error: function (result) {
+                    /*$('.skeletonRow').remove();*/
+                }
+            });
+        }
+    </script>
+}
+
+

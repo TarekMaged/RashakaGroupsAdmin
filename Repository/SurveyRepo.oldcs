@@ -1,0 +1,259 @@
+﻿
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using RashakaGroupsAdmin.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
+
+namespace RashakaGroupsAdmin.Models
+{
+
+
+	public class SurveyRepo
+	{
+		RashakaEntities db = new RashakaEntities();
+		public List<Survey> getAllSurvey()
+		{
+			try
+			{
+				return db.Surveys.ToList();
+			}
+			catch (Exception)
+			{
+
+				return null;
+			}
+		}
+		
+		public bool AllowSurvey(string id, bool allow)
+		{
+			try
+			{
+				int convertId = Convert.ToInt32(id);
+				Survey _objSurvey = db.Surveys.Where(que => que.id == convertId).FirstOrDefault();
+				if (allow == true)
+				{
+					//db.Surveys.Where(xx=>xx.id!= convertId).ForEach(x => x.isPublish = false);
+					var AllSurveys = db.Surveys.Where(xx => xx.id != convertId && xx.isPublish == true).ToList();
+					foreach (var item in AllSurveys)
+					{
+						item.isPublish = false;
+					}
+				}
+				_objSurvey.isPublish = allow;
+
+				db.SaveChanges();
+				return true;
+			}
+			catch
+			{
+
+				return false;
+			}
+		}
+		public Survey getSurveyById(string SurveyId)
+		{
+			try
+			{
+				int convertSurveyId = Convert.ToInt32(SurveyId);
+				return db.Surveys.Where(ans => ans.id == convertSurveyId).FirstOrDefault();
+			}
+			catch (Exception)
+			{
+
+				return null;
+			}
+		}
+		public bool EditSurvey(string id, string text, DateTime expireDate, HttpPostedFileBase image)
+		{
+			try
+			{
+				int convertId = Convert.ToInt32(id);
+				Survey _objSurvey = db.Surveys.Where(ans => ans.id == convertId).FirstOrDefault();
+				_objSurvey.question = text;
+				_objSurvey.expireDate = expireDate;
+				_objSurvey.image = image == null ? _objSurvey.image : ImageUpload.uploadImage(image);
+				db.SaveChanges();
+				return true;
+			}
+			catch (Exception)
+			{
+
+				return false;
+			}
+		}
+		public bool deleteSurvey(string id)
+		{
+			try
+			{
+				int convertId = Convert.ToInt32(id);
+				Survey _objSurvey = db.Surveys.Where(ans => ans.id == convertId).FirstOrDefault();
+
+				db.Surveys.Remove(_objSurvey);
+				db.SaveChanges();
+				return true;
+			}
+			catch (Exception)
+			{
+
+				return false;
+			}
+		}
+        public static object[] getCommentWithPost(Guid? commentArtGuid, Guid? postGuid, Guid accountGuid)
+        {
+            dynamic resultJosn;
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://commentsystem.madarsoft.com/api/CommentV2/getCommentsWithPost");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            object[] result = new object[2];
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"postGuid\":\"" + postGuid + "\"," + "\"accountGuid\":\"" + accountGuid + "\"," + "\"commentGuid\":\"" + commentArtGuid + "\"}";
+
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                resultJosn = JsonConvert.DeserializeObject(streamReader.ReadToEnd());
+
+            }
+            if (resultJosn["success"] == true)
+            {
+                result[0] = resultJosn["response"]["newComments"];
+                result[1] = resultJosn["response"]["comments"];
+
+            }
+            return result;
+        }
+        //public List<Account> getAccountAdmin()
+        //{
+        //    return db.Accounts.Where(acc => acc.isAdmin == true).ToList();
+        //}
+        //public bool addComment(string SurveyId, string comment, Guid accountGuid)
+        //{
+        //    try
+        //    {
+        //        int SurveyIdint = Convert.ToInt32(SurveyId);
+        //        Survey _objSurvey = db.Surveys.Where(que => que.id == SurveyIdint).FirstOrDefault();
+        //        if (_objSurvey.commentSystemGuid == Guid.Empty || _objSurvey.commentSystemGuid == null)
+        //        {
+        //            AddComment _objAddComment = JsonSerlization.addfirstComment(accountGuid, _objSurvey.guid, comment);
+        //            _objSurvey.commentSystemGuid = _objAddComment.commentArtGuid;
+        //            db.SaveChanges();
+        //        }
+        //        else
+        //        {
+        //            JsonSerlization.addComment(_objSurvey.commentSystemGuid, accountGuid, comment);
+        //        }
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return false;
+        //    }
+        //}
+
+        //public bool AddAccount(string userName, HttpPostedFileBase image)
+        //{
+        //    try
+        //    {
+
+
+        //        string imageUser = ImageUploader.UploadImage(image);
+        //        user _objUser = new user();
+        //        Random rnd = new Random();
+        //        int num = rnd.Next(11, 10000);
+
+        //        _objUser.DeviceToken = "testNabaa" + num;
+        //        _objUser.CountryCode = "eg";
+        //        _objUser.Version = 1;
+        //        _objUser.PlatForm = 1;
+        //        _objUser.Date = DateTime.Now;
+        //        _objUser.LastActiveTime = DateTime.Now;
+        //        _objUser.lastNotifcationDate = DateTime.Now;
+        //        _objUser.lastUpdateFireBaseTokenDate = DateTime.Now;
+        //        _objUser.mcc = "602";
+        //        _objUser.normal = false;
+        //        _objUser.urgent = false;
+        //        _objUser.udId = null;
+        //        _objUser.UserGuid = Guid.NewGuid();
+        //        _objUser.RegisterationID = null;
+        //        _objUser.FireBaseTokenAndroidActivityName = null;
+        //        Guid userGuid = JsonSerlization.userSerlize(_objUser.DeviceToken, _objUser.PlatForm, _objUser.RegisterationID, _objUser.CountryCode);
+        //        _objUser.UserCommentSystemGuid = userGuid.ToString();
+        //        _objUser.UserCommentSystemGuidV2 = userGuid;
+        //        db.users.Add(_objUser);
+
+        //        db.SaveChanges();
+        //        Account _objAccount = new Account();
+        //        _objAccount.accountType = "1";
+        //        _objAccount.date = DateTime.Now;
+        //        _objAccount.imageUrl = "https://sourcadmin.nabaapp.com/images/" + imageUser;
+        //        _objAccount.isAdmin = true;
+        //        _objAccount.userName = userName;
+        //        _objAccount.publicId = "123456789" + num;
+        //        _objAccount.userId = _objUser.id;
+        //        Guid accountGuid = JsonSerlization.accountSerlize(_objAccount, userGuid);
+        //        _objAccount.AcountCommentSystemGuid = accountGuid.ToString();
+        //        db.Accounts.Add(_objAccount);
+        //        db.SaveChanges();
+
+
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return false;
+        //    }
+        //}
+        //public List<object> getComments(string SurveyId)
+        //{
+        //    try
+        //    {
+        //        int SurveyIdint = Convert.ToInt32(SurveyId);
+        //        Survey _objSurvey = db.Surveys.Where(que => que.id == SurveyIdint).FirstOrDefault();
+        //        List<getComments> _objgetComment = new List<getComments>();
+        //        if (_objSurvey.commentSystemGuid != Guid.Empty || _objSurvey.commentSystemGuid != null)
+        //        {
+        //            _objgetComment = JsonSerlization.getComments(_objSurvey.commentSystemGuid);
+
+        //        }
+
+
+        //        return _objgetComment;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return null;
+        //    }
+        //}
+        //public bool deleteComment(string comment)
+        //{
+        //    try
+        //    {
+        //        Guid commentGuid = new Guid(comment);
+        //        bool result = JsonSerlization.deleteComment(commentGuid);
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return false;
+        //    }
+        //}
+    }
+}

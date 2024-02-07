@@ -1,0 +1,477 @@
+﻿@using Microsoft.AspNetCore.Mvc.Infrastructure;
+@{
+    string[] data = User.Identity.Name.Split('|');
+    var accountId = data[0];
+    string userName = data.Length > 1 ? data[1] : "";
+    string groupId = data.Length > 2 ? data[3] : "";
+    string profileImage = data.Length > 3 ? data[4] : "";
+}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+    <link rel="shortcut icon" href="~/Content/FrontEnd/imgs/logo.png" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/content/frontend/css/datatables.min.css">
+    <link rel="stylesheet" href="~/content/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/content/frontend/css/charts.min.css">
+    <link rel="stylesheet" href="~/content/frontend/css/style.css?v=34">
+    <title>الرئيسية - المجموعات</title>
+    <style>
+        /* .socialInfo p, */
+        .sharePost, .userDp img, .postText, .memberName, .membersImgs img, /*.countDetails,*/ .userName, .postedBy, .order-4 p, .horizontalBar li {
+            cursor: pointer;
+        }
+
+        /* .profileImage, .userDp img, .postedBy img {
+                        border-radius: 50%
+                    }*/
+
+        /* .loader {
+                    margin: auto;
+                    border: 10px #0eb25d;
+                    border-radius: 50%;
+                    border-top: 10px solid #598fff;
+                    width: 50px;
+                    height: 50px;
+                    animation: spinner 4s linear infinite;
+                    position: relative;
+                    display: none;
+                    margin-left: auto;
+                    margin-right: auto;
+                    bottom: 60%;
+                }
+
+                @@keyframes spinner {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }*/
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-12 col-md-12 col-lg-12 main-wrapper">
+            <div class="row">
+                <div class="col-10 col-md-10 col-lg-3 px-0 sideMenu-wrapper noprint">
+                    <div id="overlayBg"></div>
+                    <div id="myNav" class="overlay">
+                        <div class="overlay-content">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+                            <div class="col-12 col-md-12 col-lg-12 sideMenu">
+                                <nav id="nav" class="navbar">
+                                    <div class="inner-menu">
+
+
+                                        <div class="userImage">
+                                            <img src="@profileImage" id="userProfileImage">
+                                            <label for="userImg" class="d-flex d-md-flex d-lg-flex mr-auto">
+                                                <input type="file" name="image" id="userProfileImgBrowser" accept="image/x-png,image/gif,image/jpeg">
+                                                <i class="edit editProfileImage"></i>
+                                            </label>
+                                        </div>
+
+
+                                        <p class="userName">@userName</p>
+                                        <p class="version"> <span class="star"></span> نسخه مدفوعة</p>
+                                    </div>
+
+                                    <div class="sideList">
+                                        <ul>
+                                            <li class="nav-item homeItem">
+                                                <a class="nav-link" href="/home/index"> <span class="home"></span> الرئيسية <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="nav-item dropdown show ">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    <span class="groups"></span>    مجموعاتك
+                                                </a>
+                                                <div class="dropdown-menu show" aria-labelledby="navbarDropdown" id="sideMenu">
+                                                    @* @Html.Action("menuGroups", "Home")*@
+
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-9 px-0">
+                    <div class="col-12 col-md-12 col-lg-12 px-0 navbarHeader noprint">
+                        <nav id="navbar" class="navbar navbar-expand-lg w-100 justify-content-center">
+                            <span class="toggler-icon" onclick="openNav()"></span>
+                            <div class="row w-100">
+                                <div class="col-5 col-md-5 col-lg-5 d-none d-md-flex d-lg-flex align-items-center">
+                                    <div class="search-wrapper">
+                                        <i class="searchIcon"></i>
+                                        <input id="searchAuto" class="form-control searchInput" type="text" placeholder="ابحث هنا" aria-label="Search" onkeyup="checkInput(this)">
+                                        <i id="clear" class="textClear" onclick="clearText()" style="display: none;"></i>
+                                    </div>
+                                </div>
+                                @*<div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                                <div class="row w-100 h-100">
+                                <div class="col-7 col-md-7 col-lg-7 d-none d-md-flex d-lg-flex  align-items-center headerLinks">
+                                <a class="addMember" href="/groups/add">اضف مجموعة جديدة</a>
+
+                                <a class="addPost" href="#" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                                </div>
+
+                                <div class="col-12 col-md-5 col-lg-5 align-items-center d-flex respHeader">
+                                <a class="notificationBell"> <span>3</span></a>
+                                <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                                <a class="navbar-brand" href="/">
+                                <div class="logo"></div>
+                                </a>
+                                </div>
+                                </div>
+                                </div>*@
+                                <div class="col-12 col-md-12 col-lg-7 d-flex respNavbar">
+                                    <div class="row w-100 h-100">
+                                        <div class="col-7 col-md-7 col-lg-7 d-none d-md-none d-lg-flex  align-items-center headerLinks">
+                                            <a class="addMember" href="/Groups/add">اضف مجموعة جديدة</a>
+
+                                            <a class="addPost" href="#" data-toggle="modal" data-target="#addPostModal">اضف منشور جديد</a>
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-5 align-items-center d-flex respHeader">
+                                            <div class="notification-wrapper">
+                                                <a class="notificationBell"> <span>3</span></a>
+                                                <div class="notificationsMenu">
+                                                    <ul id="notificationItems">
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                            <a class="addPostIcon" href="#" data-toggle="modal" data-target="#addPostModal" data-backdrop="false"></a>
+                                            <a class="addMemberIcon" href="/Groups/add"></a>
+                                            <a class="navbar-brand" href="/">
+                                                <div class="logo"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+
+                    @RenderBody()
+                </div>
+
+
+
+                @*<div class="loader"></div>*@
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal add post -->
+    @using (Html.BeginForm("Addpost", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="accountId" id="userAccountId" value="@accountId" />
+        <div class="modal fade bd-example-modal-lg addPostPopup" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> اكتب منشور جديد </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12 col-md-12 col-lg-12 ml-auto popupBody">
+                            <div class="addPost-wrapper">
+                                <div class="row align-items-center d-none d-md-none d-lg-flex">
+                                    <div class="col-auto userDp">
+                                        <img src="@profileImage">
+                                    </div>
+                                    <div class="col userInfo">
+                                        <div class="d-flex align-items-center">
+                                            <p class="userPosted"> تم النشر بواسطة <span>@userName </span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row d-block d-md-block d-lg-none mx-0">
+                                    <p class="postedAt">@*يتم النشر في جروب الجرى الحر*@</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 textarea-wrapper">
+                                        <textarea placeholder="ابدأ بالكتابة هنا" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-lg-9 postImgs d-flex">
+                                        <!--<div class="attachedImg">-->
+                                        @*<img name="attachedImg" src="~/content/frontend/imgs/mask_group_27-1-2x.png">*@
+                                        @*<div class="imgOverlay clearImg">
+                                    </div>*@
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-3 addImage">
+                                        <a href="#" class="d-inline-block d-md-inline-block d-lg-none addPostResp" onclick="$('#btnAddPost').click()">موافق</a>
+                                        <label for="postImg">
+                                            <input type="file" name="image" id="postImg" accept="image/x-png,image/gif,image/jpeg">
+                                            <input type="file" name="image2" id="postImg2" accept="image/x-png,image/gif,image/jpeg">
+                                            <input type="file" name="image3" id="postImg3" accept="image/x-png,image/gif,image/jpeg">
+                                            <button class="addImgBtn" onclick="openFileUpload(this,event)"><i></i>اضف صورة </button>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnAddPost" class="addSharePost" onclick="return ValidatePost()"> انشر</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- Modal pin post -->
+    <!--Modal delete post -->
+    @*<div class="modal fade deletePostPopup" id="deletePostModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+    <input type="hidden" value="" id="PostIdDelete" />
+
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title d-none d-md-none d-lg-block" id="deletePostLabel">سيتم حذف المنشور </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    </button>
+    </div>
+    <div class="modal-body">
+    <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+    <div class="deletePostBg">
+    </div>
+    <p>برجاء العلم عند حذف المنشور لن تتمكن من استعادته مره اخرى  </p>
+    </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+    <button type="button" class="acceptDeletePost"> حذف </button>
+    <button type="button" class="declineDelete" data-dismiss="modal"> إلغاء </button>
+
+    </div>
+    </div>
+    </div>
+    </div>*@
+    <!--Modal delete Group -->
+    @*<div class="modal fade deletePostPopup" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+    <input type="hidden" value="" id="PostIdDelete" />
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title d-none d-md-none d-lg-block" id="deletePostLabel">سيتم مسح المنشور </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    </button>
+    </div>
+    <div class="modal-body">
+    <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+    <div class="deletePostBg">
+    </div>
+    <p>برجاء العلم عند مسح المنشور لن تتمكن من استعادته مره اخرى!! </p>
+    </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+    <button type="button" class="acceptDeleteGroup" id="acceptDeleteGroup"> حذف </button>
+    <button type="button" class="declineDelete"> إلغاء </button>
+
+    </div>
+    </div>
+    </div>
+    </div>*@
+
+
+    <!-- delete popup -->
+    <!-- Modal -->
+    <!-- Modal delete comment-->
+    <div class="modal fade deletePostCommentPopup" id="deletePostCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <input type="hidden" value="" id="commentGuid" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title d-none d-md-none d-lg-block" id="deletePostLabel">سيتم حذف التعليق </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12 col-md-12 col-lg-11 mx-auto popupBody">
+                        <div class="deletePostBg">
+                        </div>
+                        <p>برجاء العلم عند حذف التعليق لن تتمكن من استعادته مره اخرى  </p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="acceptDeleteComment"> حذف </button>
+                    <button type="button" class="declineDelete" data-dismiss="modal"> إلغاء </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/content/frontend/js/jquery-3.3.1.min.js"></script>
+    <script src="~/content/frontend/js/jquery-ui.min.js"></script>
+    <script src="~/content/frontend/js/popper.js"></script>
+    <script src="~/content/frontend/js/bootstrap.min.js"></script>
+    <script src="~/content/frontend/js/scripts.js?v=10"></script>
+
+
+    @RenderSection("scripts", required: false)
+    <script>
+
+        function ShowPage(url) {
+            var groupId = localStorage.getItem("currentGroupId");
+            if (groupId != null) {
+                window.location.href = url + groupId
+            }
+        }
+
+        function ShowUserProfile(accountId, groupId) {
+            window.location.href = "/groupUsers/UserProfile?accountid=" + accountId + "&groupId=" + groupId;
+        }
+        //click group card or groups from right side menu
+        $(document).on("click", '.groupCard', function () {
+            SetGroupIdInLocalStorage(this);
+        });
+        //click group icon on left side menu
+        $(document).on("click", '.menuGroups', '.groupCard', function () {
+            $('.menuGroups').parent().find('.activeGroup').css('display', 'none');
+            $('.menuGroups').removeClass('active');
+            $(this).parent().find('.activeGroup').find('li').removeClass('active');
+            $(this).addClass('active');
+            $(this).parent().find('.activeGroup').css('display', 'block');
+            SetGroupIdInLocalStorage(this);
+        });
+
+
+        function SetGroupIdInLocalStorage(item) {
+            var itemGroupId = $(item).attr("id");
+            if (itemGroupId != null) {
+                var id = itemGroupId.substr(8);
+                if (id > 0) {
+                    localStorage.setItem("currentGroupId", id);
+                }
+            }
+        }
+
+        function SelectActivateMenuItem(itemClass) {
+            var currentGroupId = localStorage.getItem("currentGroupId");
+            if (itemClass == 'homeItem') {
+                $('.menuGroups').parent().find('.activeGroup').find('li').removeClass('active');
+            } else {
+                $('#menuItem' + currentGroupId).parent().find('.activeGroup').find('li').removeClass('active');
+                $('#menuItem' + currentGroupId).parent().find('.activeGroup').find('.' + itemClass).parent().addClass('active');
+            }
+        }
+
+        $(document).ready(function () {
+            //localStorage.setItem("profileImage", "@profileImage")
+
+            var groupId = localStorage.getItem("currentGroupId");
+          //  alert(groupId)
+            $('#activeGroup' + groupId).css('display', 'block');
+            var image = localStorage.getItem("profileImage");
+            if (image != '' && image != null) {
+                $('#userProfileImage').attr('src', image);
+            }
+            $.get("/home/MenuGroups", function (res) {
+                $('#sideMenu').html(res);
+            });
+
+
+
+
+
+            if (window.location.href.indexOf("home/index") != -1 || window.location.pathname == '/') {
+                //alert();
+                $('.homeItem').addClass("active");
+                $(".sideList .dropdown-item").removeClass("active");
+            } else {
+                var currentGroupId = localStorage.getItem("currentGroupId");
+                //alert(currentGroupId)
+                $(".sideList .dropdown-item").removeClass("active"); /* remove active from all groups */
+                $("#menuItem" + currentGroupId).addClass("active"); /* add active to selected groupId only */
+                $("#menuItem" + currentGroupId).parent().find(".activeGroup").css('display', 'block');
+            }
+
+            $.get("/Home/NotificationCount?accountId=@accountId", function (res) {
+                $('.notificationBell').find('span').html(res);
+            });
+        });
+
+        $('.declinePin').click(function () {
+            $('#pinnedPostId').val('');
+        });
+
+
+
+        $(document).on("click", ".groupOptions d-none d-md-none d-lg-block", function () {
+            $('#GroupIdDelete').val('');
+            $(".optionPopup").hide();
+        });
+
+        //click the notification icon
+        $('.notificationBell').click(function () {
+            $.get("/Home/Notification?accountId=@accountId", function (res) {
+                var rows = '';
+                $.each(res, function (i, item) {
+                    var isReadClass = "";
+                    if (item.isRead == true) {
+                        isReadClass = "new";
+                    }
+                    var html = '<li class="' + isReadClass + '">' +
+                        '<a href="#" onclick="openNot(this)">' +
+                        '<input type="hidden" class="notiTypeId" value="' + item.id + '"/>' +
+                        '<input type="hidden" class="notiType" value="' + item.type + '"/>' +
+                        '<input type="hidden" class="notipostId" value="' + item.postId + '"/>' +
+                        '<input type="hidden" class="notigroupId" value="' + item.groupId + '"/>' +
+                        '<input type="hidden" class="notiAccountId" value="' + item.from_accountId + '"/>' +
+                        '        <div class="row">' +
+                        '            <div class="col-auto notImg">' +
+                        '                <img src="' + item.image + '">' +
+                        '            </div>' +
+                        '            <div class="col">' +
+                        '                <p class="notInfo"> <span>"' + item.message + '"</span></p>' +
+                        '                <p class="notDate">"' + item.date + '"' +
+                        '            </div>' +
+                        '        </div>' +
+                        '    </a>' +
+                        '</li>';
+                    rows += html;
+                });
+                $('#notificationItems').prepend(rows);
+            });
+        });
+
+        function openNot(item) {
+            debugger
+            var id = $(item).find('.notiTypeId').val()
+            $.post("/home/readNotification", { id: id }, function () {
+
+            })
+            var type = $(item).find('.notiType').val();
+            if (type == 'addPost' || type == 'addPostComment') {
+                window.location.href = '/posts/details/' + $(item).find('.notipostId').val();
+            } else if (type == 'joinGroup') {
+                window.location.href = '/groupUsers/UserProfile?accountid=' + $(item).find('.notiAccountId').val() + '&groupId=' + $(item).find('.notigroupId').val();// '/groups/details/' + $(item).find('.notigroupId').val();
+            } else if (type == 'addPostLike') {
+                window.location.href = '/posts/details/' + $(item).find('.notipostId').val();
+            }
+        }
+
+    </script>
+</body>
+</html>
